@@ -7104,20 +7104,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\18kel\\.nuget\\packages\\": {}
+    "C:\\Users\\carol\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
+      "projectUniqueName": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
       "projectName": "InstaGama.Api",
-      "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
-      "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\obj\\",
+      "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
+      "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Services\\InstaGama.Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7130,11 +7135,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {
-              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj"
+            "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {
+              "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj"
             },
-            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj": {
-              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj"
+            "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj": {
+              "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj"
             }
           }
         }
