@@ -14,12 +14,7 @@ namespace InstaGama.Domain.Entities
             Created = DateTime.Now;
         }
 
-        public Postage(int userId, string text)
-        {
-            UserId = userId;
-            Text = text;       
-            Created = DateTime.Now;
-        }
+   
 
         public Postage(int id,
                         string text,

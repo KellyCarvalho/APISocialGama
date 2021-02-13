@@ -20,6 +20,8 @@ namespace InstaGama.Api
 {
     public class Startup
     {
+        private OpenApiSecurityScheme securitySchema;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -55,7 +57,7 @@ namespace InstaGama.Api
                 };
             });
 
-         
+           
           
             services.AddSwaggerGen(options => {
 
@@ -109,7 +111,7 @@ namespace InstaGama.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        [Authorize]
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
