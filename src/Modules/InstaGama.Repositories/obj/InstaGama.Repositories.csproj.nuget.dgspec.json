@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj": {}
+    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
+    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
         "projectName": "InstaGama.Domain",
-        "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
+        "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
         "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\obj\\",
+        "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj": {
+    "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
         "projectName": "InstaGama.Repositories",
-        "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
+        "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
         "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\obj\\",
+        "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -96,8 +96,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
-                "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
+              "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
+                "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
               }
             }
           }

@@ -1,5 +1,11 @@
 ﻿
 
+
+USE GRUPO3;
+--Criação do Database
+
+
+--Criação das tabelas
 CREATE TABLE dbo.Genero (
    Id int IDENTITY(1,1) NOT NULL,
    Descricao varchar(50) NOT NULL,
@@ -26,6 +32,7 @@ CREATE TABLE dbo.Postagem (
    Id int IDENTITY(1,1) NOT NULL,
    UsuarioId int NOT NULL,
    Texto varchar(250) NOT NULL,
+   Foto varchar(max),
    Criacao DateTime NOT NULL,
    CONSTRAINT PK_Postagem_Id PRIMARY KEY CLUSTERED (Id)
 )
@@ -68,4 +75,9 @@ ALTER TABLE dbo.Curtidas
    ADD CONSTRAINT FK_Curtidas_Postagem FOREIGN KEY (PostagemId)
       REFERENCES dbo.Postagem (Id)
 
-	  INSERT INTO Genero VALUES ('Feminino'); 
+INSERT INTO Genero VALUES ('Masculino'); 
+INSERT INTO Genero VALUES ('Feminino'); 
+
+
+
+
