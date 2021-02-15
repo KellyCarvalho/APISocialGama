@@ -12,5 +12,7 @@ namespace InstaGama.Application.AppInvite.Interfaces
     {
         Task<Invite> InsertAsync(InviteInput inviteInput);
         Task<Invite> GetByUserAsync(int idUser);
+
+
     }
 }
