@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {}
   },
   "projects": {
@@ -12,10 +13,27 @@
         "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
         "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\obj\\",
+=======
+    "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
+        "projectName": "InstaGama.Application",
+        "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
+        "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\obj\\",
+>>>>>>> eb56b15a94c0c036281e6b4c6a8584c78dfd2397
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -28,8 +46,13 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
                 "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
+=======
+              "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
+                "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
+>>>>>>> eb56b15a94c0c036281e6b4c6a8584c78dfd2397
               }
             }
           }
@@ -62,6 +85,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -70,10 +94,24 @@
         "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
         "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\obj\\",
+=======
+    "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
+        "projectName": "InstaGama.Domain",
+        "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj",
+        "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\obj\\",
+>>>>>>> eb56b15a94c0c036281e6b4c6a8584c78dfd2397
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
