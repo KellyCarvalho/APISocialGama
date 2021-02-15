@@ -75,6 +75,28 @@ ALTER TABLE dbo.Curtidas
    ADD CONSTRAINT FK_Curtidas_Postagem FOREIGN KEY (PostagemId)
       REFERENCES dbo.Postagem (Id)
 
+	  select *from Usuario;
+select *from Postagem;
+
+CREATE TABLE dbo.Convite (
+	Id int IDENTITY(1,1) NOT NULL,
+	IdUsuario int NOT NULL,
+	IdUsuarioConvidado int NOT NULL,
+	Status_Convite bit NOT NULL,
+	Mensagem varchar(250) NOT NULL,
+	CONSTRAINT PK_Convite_Id PRIMARY KEY CLUSTERED (Id),
+	
+)
+
+ALTER TABLE dbo.Convite
+   ADD CONSTRAINT FK_Usuario FOREIGN KEY (IdUsuario)
+      REFERENCES dbo.Usuario (Id)
+
+	  ALTER TABLE dbo.Convite
+   ADD CONSTRAINT FK_Usuario_Convidado FOREIGN KEY (IdUsuarioConvidado)
+      REFERENCES dbo.Usuario (Id)
+
+INSERT INTO Convite VALUES(1,2);
 INSERT INTO Genero VALUES ('Masculino'); 
 INSERT INTO Genero VALUES ('Feminino'); 
 
