@@ -65,6 +65,8 @@ namespace InstaGama.Repositories
             }
         }
 
+   
+
         public async Task<User> GetByLoginAsync(string login)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
