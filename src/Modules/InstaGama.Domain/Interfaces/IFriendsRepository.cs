@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InstaGama.Domain.Interfaces
 {
-    interface IFriendsRepository
+   public interface IFriendsRepository
     {
         Task<int> InsertAsync(Friends friends);
 

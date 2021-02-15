@@ -41,6 +41,7 @@ namespace InstaGama.Application.AppInvite
         {
             var userId = _logged.GetUserLoggedId();
             var invite = new Invite(userId, inviteInput.IdUserInvite, inviteInput.Message);
+
             var userFriend = await _userRepository
                                            .GetByIdAsync(inviteInput.IdUserInvite)
                                            .ConfigureAwait(false);

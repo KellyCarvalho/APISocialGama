@@ -117,6 +117,7 @@ namespace InstaGama.Repositories
                 using(var cmd = new SqlCommand(sqlCmd, con))
                 {
                     cmd.CommandType = CommandType.Text;
+
                     cmd.Parameters.AddWithValue("idUsuario", invite.IdUser);
                     cmd.Parameters.AddWithValue("IdUsuarioConvidado", invite.IdUserInvite);
                     cmd.Parameters.AddWithValue("Mensagem", invite.Message);

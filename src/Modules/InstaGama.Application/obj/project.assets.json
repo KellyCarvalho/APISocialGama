@@ -5394,33 +5394,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carol\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\18kel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
       "projectName": "InstaGama.Application",
       "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
       "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
-      "projectName": "InstaGama.Application",
-      "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj",
-      "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Application\\obj\\",
->>>>>>> eb56b15a94c0c036281e6b4c6a8584c78dfd2397
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5433,13 +5420,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
               "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
-=======
-            "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj": {
-              "projectPath": "C:\\Users\\carol\\Documents\\APISocialGama\\src\\Modules\\InstaGama.Domain\\InstaGama.Domain.csproj"
->>>>>>> eb56b15a94c0c036281e6b4c6a8584c78dfd2397
             }
           }
         }
@@ -5471,5 +5453,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

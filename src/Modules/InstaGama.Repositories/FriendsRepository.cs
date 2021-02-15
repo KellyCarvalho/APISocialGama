@@ -1,4 +1,5 @@
 ﻿using InstaGama.Domain.Entities;
+using InstaGama.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
