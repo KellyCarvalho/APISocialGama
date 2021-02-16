@@ -25,6 +25,7 @@ namespace InstaGama.Repositories.IoC.Application
             services.AddScoped<ICommentAppService, CommentAppService>();
             services.AddScoped<ILikesAppService, LikesAppService>();
             services.AddScoped<IInviteAppService, InviteAppService>();
+           
         }
     }
 }
