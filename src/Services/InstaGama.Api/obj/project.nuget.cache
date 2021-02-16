@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "e6cQK4bjPxtuR3ODTAFszO5zxxiHW+MhZ5wW8Xc32Qp8xEXxlxloLUOi2HqYsGp1jTrZFcmxOs9r6FA5uoh2Ag==",
-=======
   "dgSpecHash": "tDs8lLL1/CLFqki4nfO3rswpUxp1/FYFuu0QsWOTV7prQTCqX/AA/ybSKh+OLNszwL7NZUkKsIddfAk2YBV0ww==",
->>>>>>> 7c21bd6c24ed03b2de68a0ec8d1272d9b229432a
   "success": true,
   "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
   "expectedPackageFiles": [
