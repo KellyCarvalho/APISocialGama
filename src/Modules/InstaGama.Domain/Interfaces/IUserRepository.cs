@@ -1,4 +1,5 @@
 ﻿using InstaGama.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InstaGama.Domain.Interfaces
@@ -8,5 +9,9 @@ namespace InstaGama.Domain.Interfaces
         Task<int> InsertAsync(User user);
         Task<User> GetByLoginAsync(string login);
         Task<User> GetByIdAsync(int id);
+        Task<List<string>> GetPhotosUserAsync(int userId);
+
+    
+
     }
 }

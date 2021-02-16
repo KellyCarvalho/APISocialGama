@@ -1,9 +1,11 @@
 ﻿using InstaGama.Application.AppUser.Input;
 using InstaGama.Application.AppUser.Interfaces;
 using InstaGama.Application.AppUser.Output;
+using InstaGama.Domain.Core.Interfaces;
 using InstaGama.Domain.Entities;
 using InstaGama.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InstaGama.Application.AppUser
@@ -12,13 +14,15 @@ namespace InstaGama.Application.AppUser
     {
         private readonly IGenderRepository _genderRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ILogged _logged;
 
-        public UserAppService(IGenderRepository genderRepository,
-                                IUserRepository userRepository)
+        public UserAppService(IGenderRepository genderRepository, IUserRepository userRepository, ILogged logged)
         {
             _genderRepository = genderRepository;
             _userRepository = userRepository;
+            _logged = logged;
         }
+
         public async Task<UserViewModel> GetByIdAsync(int id)
         {
             var user = await _userRepository
@@ -37,6 +41,20 @@ namespace InstaGama.Application.AppUser
                 Gender = user.Gender,
                 Photo = user.Photo
             };
+        }
+
+        public async Task<List<string>> GetPhotosUserAsync()
+        {
+            var userLogged = _logged.GetUserLoggedId();
+            var photos = await _userRepository
+                                .GetPhotosUserAsync(userLogged)
+                                .ConfigureAwait(false);
+
+            if (photos is null)
+                return default;
+
+            return photos;
+
         }
 
         public async Task<UserViewModel> InsertAsync(UserInput input)

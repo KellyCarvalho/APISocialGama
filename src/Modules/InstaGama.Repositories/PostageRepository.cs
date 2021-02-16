@@ -28,7 +28,7 @@ namespace InstaGama.Repositories
                 var sqlCmd = @$"SELECT Id,
 	                                   UsuarioId,
                                        Texto,
-                                        Photo,
+                                        Foto,
                                        Criacao
                                 FROM 
 	                                Postagem
@@ -50,7 +50,7 @@ namespace InstaGama.Repositories
                     {
                         var postage = new Postage(int.Parse(reader["Id"].ToString()),
                                                     reader["Texto"].ToString(),
-                                                    reader["Photo"].ToString(),
+                                                    reader["Foto"].ToString(),
                                                     int.Parse(reader["UsuarioId"].ToString()),
                                                     DateTime.Parse(reader["Criacao"].ToString()));
 

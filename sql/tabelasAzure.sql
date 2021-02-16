@@ -123,5 +123,34 @@ ALTER TABLE dbo.Amigos
 
 	  ALTER TABLE dbo.Amigos
    ADD CONSTRAINT FK_Usuario_Amigo_Convidado FOREIGN KEY (UsuarioAmigoId)
-      REFERENCES dbo.Usuario (Id)
+      REFERENCES dbo.Usuario (Id);
+
+								SELECT Id,
+										UsuarioId,
+										UsuarioAmigoId,
+										Pendencia
+                                FROM
+										Amigos
+                                WHERE
+										UsuarioId= 1
+
+ INSERT INTO 
+         Amigos(UsuarioId,
+		        UsuarioAmigoId,
+				Pendencia)
+				VALUES(1,
+				       2,
+					   1);
+
+SELECT p.Foto, u.Email
+
+FROM Postagem p
+
+INNER JOIN Usuario u ON U.Id = p.UsuarioId
+WHERE u.Id=1;
+
+
+
+
+select *from usuario;
 

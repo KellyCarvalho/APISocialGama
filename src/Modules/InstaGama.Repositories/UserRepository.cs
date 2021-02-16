@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace InstaGama.Repositories
 {
@@ -114,6 +115,7 @@ namespace InstaGama.Repositories
             }
         }
 
+     
         public async Task<int> InsertAsync(User user)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
@@ -152,5 +154,43 @@ namespace InstaGama.Repositories
                 }
             }
         }
+
+        public async Task<List<string>> GetPhotosUserAsync(int userId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT p.Foto
+                                FROM Postagem p
+                                INNER JOIN Usuario u ON u.Id = p.UsuarioId
+                                WHERE u.Id='{userId}';";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+                    var photosForUser = new List<string>();
+
+                    while (reader.Read())
+                    {
+                        var photos = reader["Foto"].ToString();
+                        if (!string.IsNullOrEmpty(photos)) {
+                            photosForUser.Add(photos);
+                        }
+                        
+                    }
+
+                    return photosForUser;
+                }
+            }
+
+        }
+
+
+
     }
 }

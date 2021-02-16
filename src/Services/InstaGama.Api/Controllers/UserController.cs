@@ -54,5 +54,22 @@ namespace InstaGama.Api.Controllers
 
             return Ok(user);
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Album/Photos")]
+        public async Task<IActionResult> GetPhotos()
+        {
+            var photos = await _userAppService
+                                .GetPhotosUserAsync()
+                                .ConfigureAwait(false);
+
+            if (photos is null)
+                return NotFound();
+
+            return Ok(photos);
+        }
+
+
     }
 }
