@@ -6,13 +6,23 @@ namespace InstaGama.Domain.Entities
 {
    public class Friends
     {
-        public Friends(int id, int userId, int userFriendId)
+        public Friends( int userId, int userFriendId)
         {
-            Id = id;
+           
             UserId = userId;
             UserFriendId = userFriendId;
             Pendency = 1;
         }
+
+        public Friends(int id,int userId, int userFriendId,int pendency)
+        {
+            Id = id;
+            UserId = userId;
+            UserFriendId = userFriendId;
+            Pendency = pendency;
+        }
+
+
 
         public int Id { get; private set; }
         public int UserId { get; private set; }
