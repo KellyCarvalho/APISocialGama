@@ -85,18 +85,16 @@ namespace InstaGama.Api
                 OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
                 {
                     Name = "Bearer",
-                    BearerFormat = "JMT",
+                    BearerFormat = "JWT",
                     Scheme = "bearer",
                     Description = "Autorização JWT",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
                 };
-
                 OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
-             {
+        {
             {securityDefinition, new string[] { }},
-
-             };
+        };
 
                 options.SwaggerDoc("v1", apiInfo);
                 options.AddSecurityDefinition("jwt_auth", securityDefinition);
@@ -131,7 +129,7 @@ namespace InstaGama.Api
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.RoutePrefix = "SocialGama";
+                c.RoutePrefix = "swagger";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialGama");
             });
 

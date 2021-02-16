@@ -1,5 +1,5 @@
-﻿CREATE DATABASE SocialGama;
-USE SocialGama;
+﻿CREATE DATABASE GRUPO 3;
+USE GRUPO 3;
 --Criação do Database
 
 
@@ -30,6 +30,7 @@ CREATE TABLE dbo.Postagem (
    Id int IDENTITY(1,1) NOT NULL,
    UsuarioId int NOT NULL,
    Texto varchar(250) NOT NULL,
+   Foto varchar(max),
    Criacao DateTime NOT NULL,
    CONSTRAINT PK_Postagem_Id PRIMARY KEY CLUSTERED (Id)
 )
