@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AWpMX0JnSJRV2WyPFCQr3KPGIYWZiob1+6e+kaiMGX488QxbSKtnATYJOg9a7/J9H5+L6qbaKzvqTdaNqGIQdw==",
+  "dgSpecHash": "GI5adGiqzohirNI6EZc2fbDm8shzII/IPeBkpyH/qYIzf+VR0WQfcg8FAqLmNUVWY0i0H+vcG1fihiiZmPVwZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
+  "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories\\InstaGama.Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",

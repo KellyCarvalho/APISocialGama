@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "93DaDStnV+l+XIkbe9vVBG7s2bLU1OhExwaFIPF5AeyhO6qmB6sRQH3tXUOJuQlR66jz184jI8ZCELqiVjJJrA==",
+  "dgSpecHash": "e6cQK4bjPxtuR3ODTAFszO5zxxiHW+MhZ5wW8Xc32Qp8xEXxlxloLUOi2HqYsGp1jTrZFcmxOs9r6FA5uoh2Ag==",
   "success": true,
-  "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
+  "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

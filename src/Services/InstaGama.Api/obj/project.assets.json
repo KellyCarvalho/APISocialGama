@@ -7109,11 +7109,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
+      "projectUniqueName": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
       "projectName": "InstaGama.Api",
-      "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
+      "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
       "packagesPath": "C:\\Users\\18kel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Services\\InstaGama.Api\\obj\\",
+      "outputPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\18kel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7130,11 +7130,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {
-              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj"
+            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj": {
+              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Application\\InstaGama.Application.csproj"
             },
-            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj": {
-              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj"
+            "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj": {
+              "projectPath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Modules\\InstaGama.Repositories.IoC\\InstaGama.Repositories.IoC.csproj"
             }
           }
         }
