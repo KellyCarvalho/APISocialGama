@@ -77,15 +77,14 @@ ALTER TABLE dbo.Curtidas
 
 	  select *from Usuario;
 select *from Postagem;
-
+drop table convite;
 CREATE TABLE dbo.Convite (
 	Id int IDENTITY(1,1) NOT NULL,
 	IdUsuario int NOT NULL,
 	IdUsuarioConvidado int NOT NULL,
 	Status_Convite bit NOT NULL,
-	Mensagem varchar(250) NOT NULL,
-	CONSTRAINT PK_Convite_Id PRIMARY KEY CLUSTERED (Id),
-	
+	Mensagem varchar(250),
+	CONSTRAINT PK_Convite_Id PRIMARY KEY CLUSTERED (Id),	
 )
 
 ALTER TABLE dbo.Convite
@@ -95,11 +94,34 @@ ALTER TABLE dbo.Convite
 	  ALTER TABLE dbo.Convite
    ADD CONSTRAINT FK_Usuario_Convidado FOREIGN KEY (IdUsuarioConvidado)
       REFERENCES dbo.Usuario (Id)
-
-INSERT INTO Convite VALUES(1,2);
+	 
+INSERT INTO Convite VALUES(1,2,0,'Seja meu amigo(a)');
+ select *from Convite;
 INSERT INTO Genero VALUES ('Masculino'); 
 INSERT INTO Genero VALUES ('Feminino'); 
 
+SELECT c.Id,c.IdUsuario,c.IdUsuarioConvidado,c.Status_Convite,c.Mensagem,u.Nome
+
+FROM Convite c
+
+INNER JOIN Usuario u ON U.Id = c.IdUsuario
+
+where u.id=1;
 
 
+CREATE TABLE dbo.Amigos (
+	Id int IDENTITY(1,1) NOT NULL,
+	UsuarioId int NOT NULL,
+	UsuarioAmigoId int NOT NULL,
+	Pendencia bit NOT NULL,
+	CONSTRAINT PK_Amigos_Id PRIMARY KEY CLUSTERED (Id),	
+)
+
+ALTER TABLE dbo.Amigos
+   ADD CONSTRAINT FK_Usuario_Amigos FOREIGN KEY (UsuarioId)
+      REFERENCES dbo.Usuario (Id)
+
+	  ALTER TABLE dbo.Amigos
+   ADD CONSTRAINT FK_Usuario_Amigo_Convidado FOREIGN KEY (UsuarioAmigoId)
+      REFERENCES dbo.Usuario (Id)
 
