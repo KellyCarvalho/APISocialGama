@@ -19,18 +19,57 @@ namespace InstaGama.Repositories
             _configuration = configuration;
         }
 
+        public async Task<Invite> GetByFriendAsync(int idFriendInvited)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$" SELECT	 Id,
+                                 IdUsuario,
+                                 IdUsuarioConvidado,                               
+                                 Mensagem,
+                                 Status_Convite
+                                 From Convite
+                                 Where 
+                                 IdusuarioConvidado='{idFriendInvited}';";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                         .ExecuteReaderAsync()
+                                         .ConfigureAwait(false);
+                    while (reader.Read())
+                    {
+                        var invite = new Invite(int.Parse(reader["IdUsuario"].ToString()),
+                                                int.Parse(reader["IdusuarioConvidado"].ToString()),
+                                                reader["Mensagem"].ToString(),
+                                               int.Parse(reader["Status_Convite"].ToString()));
+
+                        invite.SetId(int.Parse(reader["Id"].ToString()));
+
+                        return invite;
+                    }
+                    return default;
+                }
+
+            }
+
+        }
+
         public async Task<Invite> GetByIdAsync(int id)
         {
             using(var con = new SqlConnection(_configuration["ConnectionString"]))
             {
-                var sqlCmd = @$" Id,
-                                 IdUsuario,
-                                 IdusuarioConvidado                                
-                                 Mensagem,
-                                 Status_Convite,
-                                 From Convite
-                                 Where 
-                                 Id='{id}'";
+                var sqlCmd = @$"SELECT Id,
+                                IdUsuario,
+                                IdUsuarioConvidado,                             
+                                Mensagem,
+                                Status_Convite
+                                From Convite
+                                Where 
+                                Id='{id}'";
 
                 using(var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -64,11 +103,11 @@ namespace InstaGama.Repositories
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
-                var sqlCmd = @$" Id,
+                var sqlCmd = @$"SELECT	 Id,
                                  IdUsuario,
-                                 IdusuarioConvidado                                
+                                 IdusuarioConvidado,                                
                                  Mensagem,
-                                 Status_Convite,
+                                 Status_Convite
                                  From Convite
                                  Where 
                                  IdUsuario='{idUser}'";
@@ -128,6 +167,26 @@ namespace InstaGama.Repositories
                                       .ConfigureAwait(false);
 
                     return int.Parse(id.ToString());
+                }
+            }
+        }
+
+        public async Task  UpdateAsync(int idFriendInvited)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+
+                var sqlCmd = @$"UPDATE Convite SET Status_Convite=@status_convite WHERE IdUsuarioConvidado='{idFriendInvited}'";
+
+                using(var cmd = new SqlCommand(sqlCmd,con))
+                {  
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("status_convite", 1);
+                    con.Open();
+                                     await cmd
+                                      .ExecuteScalarAsync()
+                                      .ConfigureAwait(false);
+                   
                 }
             }
         }

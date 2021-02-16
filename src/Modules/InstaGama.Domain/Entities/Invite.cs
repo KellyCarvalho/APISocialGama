@@ -31,6 +31,13 @@ namespace InstaGama.Domain.Entities
             Status = 0;
         }
 
+        public Invite(int idUser, int idUserInvite)
+        {
+            IdUser = idUser;
+            IdUserInvite = idUserInvite;
+            Status = 1;
+        }
+
         public Invite(int idUser, int idUserInvite, int status)
         {
             IdUser = idUser;

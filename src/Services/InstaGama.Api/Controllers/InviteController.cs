@@ -35,5 +35,23 @@ namespace InstaGama.Api.Controllers
                 return BadRequest(arg.Message);
             }
         }
+
+        [HttpPut]
+        [Route("{idfriend}")]
+        public async Task<IActionResult> Update([FromRoute]int idfriend)
+        {
+            try
+            {
+                var invite = await _inviteAppService
+                                   .UpdateAsync(idfriend)
+                                   .ConfigureAwait(false);
+
+                return Accepted("", invite);
+            }
+            catch (ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+        }
     }
 }

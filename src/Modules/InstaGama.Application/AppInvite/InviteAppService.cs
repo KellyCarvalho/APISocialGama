@@ -41,6 +41,14 @@ namespace InstaGama.Application.AppInvite
         {
             var userId = _logged.GetUserLoggedId();
             var invite = new Invite(userId, inviteInput.IdUserInvite, inviteInput.Message);
+            var checkFriendAlredyInvited = await _inviteRepository
+                                                           .GetByFriendAsync(inviteInput.IdUserInvite)
+                                                           .ConfigureAwait(false);
+            if (checkFriendAlredyInvited != null)
+            {
+                throw new ArgumentException("Você Já convidou este usuário, aguarde ele aceitar");
+            }
+
             var userFriend = await _userRepository
                                            .GetByIdAsync(inviteInput.IdUserInvite)
                                            .ConfigureAwait(false);
@@ -60,6 +68,29 @@ namespace InstaGama.Application.AppInvite
             invite.SetId(id);
             return invite;
 
+        }
+
+        public async Task<Invite> UpdateAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+           /* var checkAlredyAcepted = await _inviteRepository
+                                        .GetByFriendAsync(idFriend)
+                                        .ConfigureAwait(false);
+
+            if (checkAlredyAcepted.Status == 1)
+            {
+                throw new ArgumentException("Você já aceitou este amigo");
+            }*/
+
+            var inviteUpdate = new Invite(userId, idFriend);
+
+             await  _inviteRepository
+                                    .UpdateAsync(idFriend)
+                                    .ConfigureAwait(false);
+
+     
+            return inviteUpdate;
         }
     }
 }

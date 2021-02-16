@@ -56,6 +56,7 @@ namespace InstaGama.Application.AppFriends
         public async Task<Friends> InsertAsync(FriendsInput friendsInput)
         {
             var userId = _logged.GetUserLoggedId();
+          
             var friend = new Friends(userId,friendsInput.UserFriendId);
             var checkFriendExist = _userRepository
                                     .GetByIdAsync(friendsInput.UserFriendId)
