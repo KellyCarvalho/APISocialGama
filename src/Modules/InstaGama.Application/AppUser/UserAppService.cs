@@ -45,6 +45,15 @@ namespace InstaGama.Application.AppUser
                                    .GetByIdAsync(input.GenderId)
                                    .ConfigureAwait(false);
 
+            var userAlredyExist = await _userRepository
+                                        .GetByLoginAsync(input.Email)
+                                        .ConfigureAwait(false);
+
+            if(userAlredyExist != null)
+            {
+                throw new ArgumentException("Já existe um usuário com este email, tente outro!");
+            }
+
             if (gender is null)
             {
                 throw new ArgumentException("O genero que está tentando associar ao usuário não existe!");
@@ -56,7 +65,7 @@ namespace InstaGama.Application.AppUser
                                  input.Birthday,
                                  new Gender(gender.Id, gender.Description),
                                  input.Photo);
-
+          
             if (!user.IsValid())
             {
                 throw new ArgumentException("Existem dados que são obrigatórios e não foram preenchidos");

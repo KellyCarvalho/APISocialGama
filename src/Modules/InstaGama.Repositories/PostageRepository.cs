@@ -28,6 +28,7 @@ namespace InstaGama.Repositories
                 var sqlCmd = @$"SELECT Id,
 	                                   UsuarioId,
                                        Texto,
+                                        Photo,
                                        Criacao
                                 FROM 
 	                                Postagem
@@ -49,6 +50,7 @@ namespace InstaGama.Repositories
                     {
                         var postage = new Postage(int.Parse(reader["Id"].ToString()),
                                                     reader["Texto"].ToString(),
+                                                    reader["Photo"].ToString(),
                                                     int.Parse(reader["UsuarioId"].ToString()),
                                                     DateTime.Parse(reader["Criacao"].ToString()));
 
@@ -65,12 +67,17 @@ namespace InstaGama.Repositories
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
                 var sqlCmd = @"INSERT INTO
-                                Postagem (UsuarioId,
-                                           Texto,
-                                           Criacao)
-                                VALUES (@usuarioId,
-                                        @texto,
-                                        @criacao); SELECT scope_identity();";
+                                      Postagem (
+		                              UsuarioId,
+                                      Texto,
+                                      Foto,
+		                              Criacao)
+                                      VALUES (
+			                         @usuarioId,
+                                     @texto,
+                                     @foto,
+		                             @criacao);
+		                             SELECT scope_identity();";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -78,6 +85,7 @@ namespace InstaGama.Repositories
 
                     cmd.Parameters.AddWithValue("usuarioId", postage.UserId);
                     cmd.Parameters.AddWithValue("texto", postage.Text);
+                    cmd.Parameters.AddWithValue("foto", postage.Photo);
                     cmd.Parameters.AddWithValue("criacao", postage.Created);
 
                     con.Open();

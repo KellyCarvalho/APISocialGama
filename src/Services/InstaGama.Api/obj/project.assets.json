@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "AngularJS.Core/1.8.2": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.Authentication/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -2101,6 +2104,21 @@
     }
   },
   "libraries": {
+    "AngularJS.Core/1.8.2": {
+      "sha512": "XqWsLLPPF8KDFYbVPbtpbae1claPLcjyxZgYThdXQri3I2O8SDdMzNafnhIi9nGgg3X6zsu1W0Qj0u5p1wr5mA==",
+      "type": "package",
+      "path": "angularjs.core/1.8.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "angularjs.core.1.8.2.nupkg.sha512",
+        "angularjs.core.nuspec",
+        "content/Scripts/angular-mocks.js",
+        "content/Scripts/angular.js",
+        "content/Scripts/angular.min.js",
+        "content/Scripts/angular.min.js.map"
+      ]
+    },
     "Microsoft.AspNetCore.Authentication/2.2.0": {
       "sha512": "b0R9X7L6zMqNsssKDvhYHuNi5x0s4DyHTeXybIAyGaitKiW1Q5aAGKdV2codHPiePv9yHfC9hAMyScXQ/xXhPw==",
       "type": "package",
@@ -7095,6 +7113,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AngularJS.Core >= 1.8.2",
       "InstaGama.Application >= 1.0.0",
       "InstaGama.Repositories.IoC >= 1.0.0",
       "Microsoft.AspNetCore.Authentication >= 2.2.0",
@@ -7149,6 +7168,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "AngularJS.Core": {
+            "target": "Package",
+            "version": "[1.8.2, )"
+          },
           "Microsoft.AspNetCore.Authentication": {
             "target": "Package",
             "version": "[2.2.0, )"
@@ -7187,5 +7210,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

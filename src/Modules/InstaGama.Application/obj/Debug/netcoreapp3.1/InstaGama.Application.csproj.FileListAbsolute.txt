@@ -22,3 +22,15 @@ C:\Users\18kel\Documents\projeto gamaAcademy\instagama\src\Modules\InstaGama.App
 C:\Users\18kel\Documents\projeto gamaAcademy\instagama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.csproj.CopyComplete
 C:\Users\18kel\Documents\projeto gamaAcademy\instagama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.dll
 C:\Users\18kel\Documents\projeto gamaAcademy\instagama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.pdb
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\bin\Debug\netcoreapp3.1\InstaGama.Application.deps.json
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\bin\Debug\netcoreapp3.1\InstaGama.Application.dll
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\bin\Debug\netcoreapp3.1\InstaGama.Application.pdb
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\bin\Debug\netcoreapp3.1\InstaGama.Domain.dll
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\bin\Debug\netcoreapp3.1\InstaGama.Domain.pdb
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.csprojAssemblyReference.cache
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.AssemblyInfoInputs.cache
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.AssemblyInfo.cs
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.csproj.CoreCompileInputs.cache
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.csproj.CopyComplete
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.dll
+C:\Users\18kel\Documents\projeto gamaAcademy\instagama\APISocialGama\src\Modules\InstaGama.Application\obj\Debug\netcoreapp3.1\InstaGama.Application.pdb

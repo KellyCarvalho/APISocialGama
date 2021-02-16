@@ -13,19 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Infrastructure", "3-Infra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Tests", "4-Tests", "{B5ECDA85-27BD-429C-9FBB-5575E247B0FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaGama.Domain", "src\Modules\InstaGama.Domain\InstaGama.Domain.csproj", "{D96452A1-4E54-4771-8053-19BA7C5B4678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaGama.Domain", "src\Modules\InstaGama.Domain\InstaGama.Domain.csproj", "{D96452A1-4E54-4771-8053-19BA7C5B4678}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1-Repositories", "3.1-Repositories", "{E6EE43D3-C24B-4075-9F51-E8E2DCECCA9A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2-IoC", "3.2-IoC", "{FA6E5764-8802-4A39-BBEB-F7FA06739E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaGama.Repositories", "src\Modules\InstaGama.Repositories\InstaGama.Repositories.csproj", "{2C6AFE19-E9A4-489C-A369-FD77E66A3366}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaGama.Repositories", "src\Modules\InstaGama.Repositories\InstaGama.Repositories.csproj", "{2C6AFE19-E9A4-489C-A369-FD77E66A3366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaGama.Application", "src\Modules\InstaGama.Application\InstaGama.Application.csproj", "{37451A91-E603-4382-B510-19F8A25E21B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaGama.Application", "src\Modules\InstaGama.Application\InstaGama.Application.csproj", "{37451A91-E603-4382-B510-19F8A25E21B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaGama.Api", "src\Services\InstaGama.Api\InstaGama.Api.csproj", "{CE201601-09A0-4B00-A485-48789F12725B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaGama.Api", "src\Services\InstaGama.Api\InstaGama.Api.csproj", "{CE201601-09A0-4B00-A485-48789F12725B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaGama.Repositories.IoC", "src\Modules\InstaGama.Repositories.IoC\InstaGama.Repositories.IoC.csproj", "{E70B92CD-7DCD-4E0F-B4CB-1647B011B922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaGama.Repositories.IoC", "src\Modules\InstaGama.Repositories.IoC\InstaGama.Repositories.IoC.csproj", "{E70B92CD-7DCD-4E0F-B4CB-1647B011B922}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

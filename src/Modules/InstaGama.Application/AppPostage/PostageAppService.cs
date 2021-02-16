@@ -34,9 +34,15 @@ namespace InstaGama.Application.AppPostage
         {
             var userId = _logged.GetUserLoggedId();
 
-            var postage = new Postage(input.Text, userId);
+            var postage = new Postage(input.Text, userId,input.Photo);
+            if (!postage.IsValid())
+            {
+                throw new ArgumentException("Existem dados que são obrigatórios e não foram preenchidos");
+            }
 
-            //Validar classe com dados obrigatorios..
+            
+
+
 
             var id = await _postageRepository
                              .InsertAsync(postage)

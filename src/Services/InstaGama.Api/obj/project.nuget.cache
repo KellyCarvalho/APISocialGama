@@ -1,9 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "e6cQK4bjPxtuR3ODTAFszO5zxxiHW+MhZ5wW8Xc32Qp8xEXxlxloLUOi2HqYsGp1jTrZFcmxOs9r6FA5uoh2Ag==",
+=======
+  "dgSpecHash": "tDs8lLL1/CLFqki4nfO3rswpUxp1/FYFuu0QsWOTV7prQTCqX/AA/ybSKh+OLNszwL7NZUkKsIddfAk2YBV0ww==",
+>>>>>>> 7c21bd6c24ed03b2de68a0ec8d1272d9b229432a
   "success": true,
   "projectFilePath": "C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\InstaGama.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\18kel\\.nuget\\packages\\angularjs.core\\1.8.2\\angularjs.core.1.8.2.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
@@ -140,5 +145,12 @@
     "C:\\Users\\18kel\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\18kel\\.nuget\\packages\\windowsazure.storage\\9.3.3\\windowsazure.storage.9.3.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\18kel\\Documents\\projeto gamaAcademy\\instagama\\APISocialGama\\src\\Services\\InstaGama.Api\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

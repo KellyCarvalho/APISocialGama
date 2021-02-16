@@ -39,6 +39,7 @@ namespace InstaGama.Domain.Entities
         public DateTime Birthday { get; private set; }
         public Gender Gender { get; private set; }
         public string Photo { get; private set; }
+        
 
         public bool IsValid()
         {
