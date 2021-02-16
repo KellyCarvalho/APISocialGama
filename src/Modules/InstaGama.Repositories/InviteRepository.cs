@@ -19,45 +19,6 @@ namespace InstaGama.Repositories
             _configuration = configuration;
         }
 
-        public async Task<int> CheckStatus(int idUser)
-        {
-            using(var con = new SqlConnection(_configuration["ConnectionString"]))
-            {
-                var sqlCmd = @$" Id,
-                                 IdUsuario,
-                                 IdusuarioConvidado                                
-                                 Mensagem,
-                                 Status_Convite,
-                                 From Convite
-                                 Where 
-                                 Id='{idUser}'";
-
-                using(var cmd = new SqlCommand(sqlCmd, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-
-                    var reader = await cmd
-                                        .ExecuteReaderAsync()
-                                        .ConfigureAwait(false);
-
-                    
-                    while (reader.Read())
-                    {
-                        var invite = new Invite(int.Parse(reader["IdUsuario"].ToString()),
-                                               int.Parse(reader["IdusuarioConvidado"].ToString()),
-                                               reader["Mensagem"].ToString(),
-                                              int.Parse(reader["Status_Convite"].ToString()));
-
-                        invite.SetId(int.Parse(reader["Id"].ToString()));
-                        return int.Parse(reader["Status_Convite"].ToString());
-
-                    }
-                    return default;
-                }
-            }
-        }
-
         public async Task<Invite> GetByIdAsync(int id)
         {
             using(var con = new SqlConnection(_configuration["ConnectionString"]))
@@ -156,7 +117,6 @@ namespace InstaGama.Repositories
                 using(var cmd = new SqlCommand(sqlCmd, con))
                 {
                     cmd.CommandType = CommandType.Text;
-
                     cmd.Parameters.AddWithValue("idUsuario", invite.IdUser);
                     cmd.Parameters.AddWithValue("IdUsuarioConvidado", invite.IdUserInvite);
                     cmd.Parameters.AddWithValue("Mensagem", invite.Message);
@@ -170,8 +130,6 @@ namespace InstaGama.Repositories
                     return int.Parse(id.ToString());
                 }
             }
-
-
         }
     }
 }
