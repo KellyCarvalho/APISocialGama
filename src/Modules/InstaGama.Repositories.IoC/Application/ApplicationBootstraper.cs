@@ -1,4 +1,6 @@
-﻿using InstaGama.Application.AppInvite;
+﻿using InstaGama.Application.AppFriends;
+using InstaGama.Application.AppFriends.Interfaces;
+using InstaGama.Application.AppInvite;
 using InstaGama.Application.AppInvite.Interfaces;
 using InstaGama.Application.AppPostage;
 using InstaGama.Application.AppPostage.Interfaces;
@@ -25,6 +27,7 @@ namespace InstaGama.Repositories.IoC.Application
             services.AddScoped<ICommentAppService, CommentAppService>();
             services.AddScoped<ILikesAppService, LikesAppService>();
             services.AddScoped<IInviteAppService, InviteAppService>();
+            services.AddScoped<IFriendsAppService, FriendsAppService>();
            
         }
     }
