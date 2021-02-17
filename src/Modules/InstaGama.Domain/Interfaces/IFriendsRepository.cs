@@ -12,6 +12,7 @@ namespace InstaGama.Domain.Interfaces
         Task<int> InsertAsync(Friends friends);
 
         Task<List<Friends>> GetFriendsByUserIdAsync(int userId);
-        Task<Friends> GetByIdFriendAsync(int friendId);
+
+
     }
 }

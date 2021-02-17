@@ -18,18 +18,19 @@ namespace InstaGama.Repositories
         {
             _configuration = configuration;
         }
-        public async Task<Friends> GetByIdFriendAsync(int friendId)
+
+        public async Task<List<Friends>> GetFriendsByUserIdAsync(int userId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
-                var sqlCmd = $@"SELECT Id,
+                var sqlCmd = @$"SELECT Id,
 										UsuarioId,
                                         UsuarioAmigoId,
 										Pendencia
                                 FROM
 										Amigos
                                 WHERE
-										UsuarioAmigoId= '{friendId}'";
+										UsuarioId='{userId}' and Pendencia=0;";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -37,58 +38,26 @@ namespace InstaGama.Repositories
                     con.Open();
 
                     var reader = await cmd
-                                          .ExecuteReaderAsync()
-                                          .ConfigureAwait(false);
-                    
-                    while (reader.Read())
-                    {
-                        var friend = new Friends(int.Parse(reader["Id"].ToString()),
-                                                    int.Parse(reader["UsuarioId"].ToString()),
-                                                     int.Parse(reader["UsuarioAmigoId"].ToString()),
-                                                    int.Parse(reader["Pendencia"].ToString()));
-                        return friend;
-                    }
-                    return default;
-                }
-            }
-        }
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
 
-        public async Task<List<Friends>> GetFriendsByUserIdAsync(int userId)
-        {
-            using(var con=new SqlConnection(_configuration["ConnectionString"]))
-            {
-                var sqlCmd = $@"SELECT Id,
-										UsuarioId,
-                                        UsuarioAmigoId,
-										Pendencia
-                                FROM
-										Amigos
-                                WHERE
-										UsuarioId= '{userId}'";
-
-                using(var cmd = new SqlCommand(sqlCmd, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-
-                    var reader = await cmd
-                                          .ExecuteReaderAsync()
-                                          .ConfigureAwait(false);
                     var userFriends = new List<Friends>();
+                 
+
                     while (reader.Read())
                     {
-                        var friend = new Friends(int.Parse(reader["Id"].ToString()),
-                                                    int.Parse(reader["UsuarioId"].ToString()),
-                                                     int.Parse(reader["UsuarioAmigoId"].ToString()),
-                                                    int.Parse(reader["Pendencia"].ToString()));
-                        userFriends.Add(friend);
+                      
+                        var friends = new Friends(int.Parse(reader["Id"].ToString()),
+                                               int.Parse(reader["UsuarioId"].ToString()),
+                                               int.Parse(reader["UsuarioAmigoId"].ToString()),
+                                               int.Parse(reader["Pendencia"].ToString()));
+
+                        userFriends.Add(friends);
                     }
+
                     return userFriends;
                 }
             }
-
-           
-           
         }
 
         public async Task<int> InsertAsync(Friends friends)

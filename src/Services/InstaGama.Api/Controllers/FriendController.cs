@@ -43,20 +43,21 @@ namespace InstaGama.Api.Controllers
 
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> Get()
+     [Authorize]
+     [HttpGet]
+     public async Task<IActionResult> Get()
         {
             var friends = await _friendAppService
                                     .GetFriendsByUserIdAsync()
                                     .ConfigureAwait(false);
 
-            if (friends is null)
+            if(friends is null)
+            {
                 return NoContent();
+            }
 
             return Ok(friends);
         }
-
 
 
     
