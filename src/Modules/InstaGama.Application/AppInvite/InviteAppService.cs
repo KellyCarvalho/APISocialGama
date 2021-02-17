@@ -24,6 +24,8 @@ namespace InstaGama.Application.AppInvite
             _logged = logged;
         }
 
+      
+
         public async Task<Invite> GetByUserAsync(int idUser)
         {
             var userId = _logged.GetUserLoggedId();
@@ -74,14 +76,14 @@ namespace InstaGama.Application.AppInvite
         {
             var userId = _logged.GetUserLoggedId();
 
-           /* var checkAlredyAcepted = await _inviteRepository
+            var checkAlredyAcepted = await _inviteRepository
                                         .GetByFriendAsync(idFriend)
                                         .ConfigureAwait(false);
 
             if (checkAlredyAcepted.Status == 1)
             {
                 throw new ArgumentException("Você já aceitou este amigo");
-            }*/
+            }
 
             var inviteUpdate = new Invite(userId, idFriend);
 
@@ -91,6 +93,26 @@ namespace InstaGama.Application.AppInvite
 
      
             return inviteUpdate;
+        }
+
+        public async Task DeleteAsync(int id)
+        { 
+            var userId = _logged.GetUserLoggedId();
+            var checkIfExistInvite = await _inviteRepository
+                            .GetByIdAsync(id)
+                            .ConfigureAwait(false);
+
+            if (checkIfExistInvite != null)
+            {
+                      await _inviteRepository
+                      .DeleteAsync(checkIfExistInvite.Id)
+                      .ConfigureAwait(false);
+            }
+            else
+            {
+                throw new ArgumentException("Este convite que está tentando apagar não existe!");
+            }
+
         }
     }
 }

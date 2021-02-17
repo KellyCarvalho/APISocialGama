@@ -82,11 +82,11 @@ CREATE TABLE dbo.Convite (
 	Id int IDENTITY(1,1) NOT NULL,
 	IdUsuario int NOT NULL,
 	IdUsuarioConvidado int NOT NULL,
-	Status_Convite bit NOT NULL,
+	Status_Convite int NOT NULL,
 	Mensagem varchar(250),
 	CONSTRAINT PK_Convite_Id PRIMARY KEY CLUSTERED (Id),	
 )
-
+drop table Convite;
 ALTER TABLE dbo.Convite
    ADD CONSTRAINT FK_Usuario FOREIGN KEY (IdUsuario)
       REFERENCES dbo.Usuario (Id)
@@ -125,7 +125,7 @@ ALTER TABLE dbo.Amigos
    ADD CONSTRAINT FK_Usuario_Amigo_Convidado FOREIGN KEY (UsuarioAmigoId)
       REFERENCES dbo.Usuario (Id);
 
-UPDATE Convite SET Status_Convite=0 WHERE UsuarioId=1 and UsuarioAmigoId=2;
+
 
 UPDATE Amigos SET Pendencia=0 WHERE UsuarioId=1 and UsuarioAmigoId=2;
 
@@ -135,7 +135,34 @@ UPDATE Amigos SET Pendencia=0 WHERE UsuarioId=1 and UsuarioAmigoId=2;
 
 select *from amigos;
 
-
+UPDATE Convite SET Status_Convite=0 WHERE IdUsuarioConvidado=2;
 
 select *from usuario;
+select *from Convite;
+						  SELECT Id,
+                                 IdUsuario,
+                                 IdUsuarioConvidado,                             
+                                 Mensagem,
+                                 Status_Convite
+                                 From Convite
+                                 Where 
+                                 Id=1;
+
+						SELECT	 Id,
+                                 IdUsuario,
+                                 IdusuarioConvidado,                               
+                                 Mensagem,
+                                 Status_Convite
+                                 From Convite
+                                 Where 
+                                 IdusuarioConvidado=2;
+
+						SELECT	 Id,
+                                 IdUsuario,
+                                 IdusuarioConvidado,                                
+                                 Mensagem,
+                                 Status_Convite
+                                 From Convite
+                                 Where 
+                                 IdUsuario=1
 

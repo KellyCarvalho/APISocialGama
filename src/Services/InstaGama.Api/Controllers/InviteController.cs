@@ -53,5 +53,23 @@ namespace InstaGama.Api.Controllers
                 return BadRequest(arg.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute]int id)
+        {
+            try
+            {
+                await _inviteAppService
+                                    .DeleteAsync(id)
+                                    .ConfigureAwait(false);
+                return Accepted("", "");
+            }catch(ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+
+        }
+
     }
 }
