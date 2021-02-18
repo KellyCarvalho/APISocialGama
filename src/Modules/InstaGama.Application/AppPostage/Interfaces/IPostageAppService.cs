@@ -9,5 +9,12 @@ namespace InstaGama.Application.AppPostage.Interfaces
     {
         Task<Postage> InsertAsync(PostageInput input);
         Task<List<Postage>> GetPostageByUserIdAsync();
+        Task<List<Postage>> GetPostageFriendAsync();
+
+        Task<List<Postage>> GetPostageFriendIdAsync(int idFriend);
+
+
+
+
     }
 }

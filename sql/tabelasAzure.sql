@@ -111,12 +111,13 @@ ALTER TABLE dbo.Amigos
    ADD CONSTRAINT FK_Usuario_Amigo_Convidado FOREIGN KEY (UsuarioAmigoId)
       REFERENCES dbo.Usuario (Id);
 -----------------------------------------------------------------------------------	 
-INSERT INTO Convite VALUES(1,2,0,'Seja meu amigo(a)');
+
 INSERT INTO Amigos Values(1,2,1);
  select *from Amigos;
   select *from usuario;
 INSERT INTO Genero VALUES ('Masculino'); 
 INSERT INTO Genero VALUES ('Feminino'); 
+INSERT INTO Postagem VALUES (3,'Boa tarde',null,'2021-02-19T18:20:17.636Z'); 
 
 
 								SELECT Id,
@@ -128,93 +129,86 @@ INSERT INTO Genero VALUES ('Feminino');
                                 WHERE
 										UsuarioId= 1 and Pendencia =0;
 
-SELECT c.Id,c.IdUsuario,c.IdUsuarioConvidado,c.Status_Convite,c.Mensagem,u.Nome
-
-FROM Convite c
-
-INNER JOIN Usuario u ON U.Id = c.IdUsuario
-
-where u.id=1;
 
 
 
 
 
-UPDATE Amigos SET Pendencia=0 WHERE UsuarioId=1 and UsuarioAmigoId=2;
+  delete amigos;
 
-								UPDATE Convite
-                                SET Status_Convite=0
-                                WHERE IdUsuarioConvidado=2;
-
+  select *from amigos; 
+    select *from usuario;  
 
 
 
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=3 and Pendencia=0;
 
-INSERT INTO Convite VALUES(2,1,0,'Seja meu amigo(a)');
-select *from usuario;
-select *from Convite;
-						  SELECT Id,
-                                 IdUsuario,
-                                 IdUsuarioConvidado,                             
-                                 Mensagem,
-                                 Status_Convite
-                                 From Convite
-                                 Where 
-                                 IdUsuarioConvidado=2;
+select p.Id, p.UsuarioId, a.UsuarioAmigoId
+From Postagem p
+inner join Amigos a on a.UsuarioAmigoId=p.UsuarioId
+where p.UsuarioId=3;
+SELECT *FROM Usuario;
+select *from Postagem;
+select *from Amigos;
 
-						SELECT	 Id,
-                                 IdUsuario,
-                                 IdusuarioConvidado,                               
-                                 Mensagem,
-                                 Status_Convite
-                                 From Convite
-                                 Where 
-                                 IdusuarioConvidado=2;
+select p.Id, p.UsuarioId,p.Foto,p.Texto,p.Criacao
+from postagem p
+inner join Amigos a on a.UsuarioAmigoId=p.UsuarioId;
 
-						SELECT	 Id,
-                                 IdUsuario,
-                                 IdusuarioConvidado,                                
-                                 Mensagem,
-                                 Status_Convite
-                                 From Convite
-                                 Where 
-                                 IdUsuario=1;
-
-
-CREATE TRIGGER TGR_ACEITAR_AMIGO 
-ON Convite
-FOR UPDATE
-AS
-BEGIN
-
-    UPDATE Amigos SET Pendencia = 1;  
-END
-
-  select *from amigos;  
-
-  UPDATE Convite SET Status_Convite=1 WHERE IdUsuarioConvidado=2;
- 
+SELECT p.Id,
+p.UsuarioId,
+p.Texto,
+p.Foto,
+p.Criacao
+FROM 
+Postagem p
+INNER JOIN Amigos a 
+on a.UsuarioAmigoId=p.UsuarioId
+where a.UsuarioAmigoId=3 and a.Pendencia=0;
 
 
-CREATE TRIGGER TGR_ACEITAR_AMIGO
-ON CONVITE
-FOR INSERT
-AS
-BEGIN
-    DECLARE
-    @ID_USUARIO  INT,
-    @ID_AMIGO   INT,
-	@STATUS_CONVITE int
+SELECT p.Id,
+p.UsuarioId,
+p.Texto,
+p.Foto,
+p.Criacao
+FROM 
+Postagem p
+INNER JOIN Amigos a 
+on a.UsuarioAmigoId=p.UsuarioId
+where a.UsuarioAmigoId=p.UsuarioId;
 
+SELECT a.UsuarioId, p.Id,p.Foto,p.Texto,p.Criacao
+FROM 
+Amigos b
+INNER JOIN Amigos a 
+on a.UsuarioAmigoId=b.UsuarioId
+INNER JOIN Postagem p
+on p.UsuarioId=b.UsuarioAmigoId
+where .UsuarioId=1
+order by  p.Criacao desc;
 
-    SELECT @STATUS_CONVITE=STATUS_CONVITE   FROM CONVITE_ACEITO
+DELETE 
+FROM
+Amigos
+WHERE 
+UsuarioAmigoId=3 and UsuarioId=1;
+delete Amigos;
 
-    UPDATE Amigos  SET Pendencia = 1
-     where STATUS_CONVITE=@STATUS_CONVITE ;
-END
-GO
+select * from Amigos;
 
-
-  select *from amigos;  
-  
-  select *from CONVITE;  
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=1 and Pendencia=0 and UsuarioId=2;

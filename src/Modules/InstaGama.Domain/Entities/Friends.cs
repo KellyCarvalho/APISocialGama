@@ -14,6 +14,14 @@ namespace InstaGama.Domain.Entities
             Pendency = 1;
         }
 
+        public Friends(int userId, int userFriendId, int pendency)
+        {
+
+            UserId = userId;
+            UserFriendId = userFriendId;
+            Pendency = pendency;
+        }
+
         public Friends(int id,int userId, int userFriendId,int pendency)
         {
             Id = id;

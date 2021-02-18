@@ -71,7 +71,7 @@ namespace InstaGama.Repositories
                                 FROM
 										Amigos
                                 WHERE
-										UsuarioId='{userId}' and Pendencia=1;";
+										UsuarioAmigoId='{userId}' and Pendencia=1;";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -100,7 +100,7 @@ namespace InstaGama.Repositories
                 }
             }
         }
-        public async Task<List<Friends>> GetFriendsByFriendIdAsync(int friendId)
+        public async Task<Friends> GetFriendsByFriendIdAsync(int userId, int friendId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
@@ -111,7 +111,7 @@ namespace InstaGama.Repositories
                                 FROM
 										Amigos
                                 WHERE
-										UsuarioAmigoId='{friendId}' and Pendencia=0;";
+										UsuarioAmigoId='{friendId}' and Pendencia=0 and UsuarioId='{userId}'";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -122,7 +122,7 @@ namespace InstaGama.Repositories
                                         .ExecuteReaderAsync()
                                         .ConfigureAwait(false);
 
-                    var userFriends = new List<Friends>();
+                  
 
 
                     while (reader.Read())
@@ -133,15 +133,20 @@ namespace InstaGama.Repositories
                                                int.Parse(reader["UsuarioAmigoId"].ToString()),
                                                int.Parse(reader["Pendencia"].ToString()));
 
-                        userFriends.Add(friends);
+                      
+                        
+                            return friends;
+                       
+
+                        
                     }
 
-                    return userFriends;
+                    return default;
                 }
             }
         }
 
-        public async Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId)
+        public async Task<Friends> GetFriendsByFriendIdPendingAsync(int userId, int friendId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
@@ -149,10 +154,10 @@ namespace InstaGama.Repositories
 										UsuarioId,
                                         UsuarioAmigoId,
 										Pendencia
-                                FROM
+										FROM
 										Amigos
-                                WHERE
-										UsuarioAmigoId='{friendId}' and Pendencia=1;";
+										WHERE
+										UsuarioAmigoId='{userId}' and Pendencia=1 and UsuarioId='{friendId}'";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -214,7 +219,7 @@ namespace InstaGama.Repositories
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
 
-                var sqlCmd = @$"UPDATE Amigos SET Pendencia=@pendencia WHERE UsuarioId='{idUser}' and UsuarioAmigoId='{idFriend}';";
+                var sqlCmd = @$"UPDATE Amigos SET Pendencia=@pendencia WHERE UsuarioId='{idFriend}' and UsuarioAmigoId='{idUser}';";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -229,6 +234,26 @@ namespace InstaGama.Repositories
             }
         }
 
-        
+        public async Task DeleteAsync(int userId, int idFriend)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = $@"DELETE 
+                                FROM
+                                Amigos
+                                WHERE 
+                                UsuarioAmigoId='{userId}' and UsuarioId='{idFriend}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    await cmd
+                   .ExecuteScalarAsync()
+                   .ConfigureAwait(false);
+                }
+            }
+        }
     }
 }

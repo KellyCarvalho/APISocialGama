@@ -13,11 +13,23 @@ namespace InstaGama.Application.AppPostage
     {
         private readonly IPostageRepository _postageRepository;
         private readonly ILogged _logged;
+        private readonly IFriendsRepository _friendsRepository;
         public PostageAppService(IPostageRepository postageRepository,
-                                  ILogged logged)
+                                  ILogged logged, IFriendsRepository friendsRepository)
         {
             _postageRepository = postageRepository;
             _logged = logged;
+            _friendsRepository = friendsRepository;
+        }
+
+        public async Task<List<Postage>> GetPostageFriendAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var postagesFriends = await _postageRepository
+                                    .GetPostageFriendAsync(userId)
+                                    .ConfigureAwait(false);
+            return postagesFriends;
         }
 
         public async Task<List<Postage>> GetPostageByUserIdAsync()
@@ -51,6 +63,38 @@ namespace InstaGama.Application.AppPostage
             postage.SetId(id);
 
             return postage;
+        }
+
+        public async Task<List<Postage>> GetPostageFriendIdAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+            var checkIfAlredyFriend = _friendsRepository
+                                        .GetFriendsByFriendIdAsync(userId,idFriend)
+                                        .ConfigureAwait(false);
+
+
+            var postageFriend = await _postageRepository
+                                    .GetPostageByUserIdAsync(idFriend)
+                                    .ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(checkIfAlredyFriend.ToString()))
+            {
+                throw new ArgumentException("Você Não tem permissão para ver as postagens deste usuário, envie uma solicitação de amizade");
+
+            }
+
+            if (!string.IsNullOrEmpty(postageFriend.ToString()))
+            {
+                return postageFriend;
+            }
+
+            if (string.IsNullOrEmpty(postageFriend.ToString()))
+            {
+                throw new ArgumentException("Este usuário ainda não tem postagem");
+            }
+
+
+            return default;
         }
     }
 }

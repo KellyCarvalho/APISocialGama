@@ -21,6 +21,8 @@ namespace InstaGama.Repositories
             _configuration = configuration;
         }
 
+     
+
         public async Task<List<Postage>> GetPostageByUserIdAsync(int userId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
@@ -62,7 +64,53 @@ namespace InstaGama.Repositories
             }
         }
 
-       
+        public async Task<List<Postage>> GetPostageFriendAsync(int userId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT  a.UsuarioId, 
+                                        p.Id,
+                                        p.Foto,
+                                        p.Texto,
+                                        p.Criacao
+                                        FROM 
+                                        Amigos b
+                                        INNER JOIN Amigos a 
+                                        on a.UsuarioAmigoId=b.UsuarioId
+                                        INNER JOIN Postagem p
+                                        on p.UsuarioId=b.UsuarioAmigoId
+                                        where b.UsuarioId='{userId}' 
+                                        order by  p.Criacao desc;";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+                    var postagesForUser = new List<Postage>();
+
+                    while (reader.Read())
+                    {
+                        var postage = new Postage(int.Parse(reader["Id"].ToString()),
+                                                    reader["Texto"].ToString(),
+                                                    reader["Foto"].ToString(),
+                                                    int.Parse(reader["UsuarioId"].ToString()),
+                                                    DateTime.Parse(reader["Criacao"].ToString()));
+
+                        postagesForUser.Add(postage);
+                    }
+
+                    return postagesForUser;
+                }
+            }
+        }
+
+
+
 
         public async Task<int> InsertAsync(Postage postage)
         {

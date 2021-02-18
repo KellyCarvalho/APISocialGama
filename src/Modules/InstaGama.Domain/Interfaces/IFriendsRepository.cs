@@ -13,12 +13,15 @@ namespace InstaGama.Domain.Interfaces
 
         Task<List<Friends>> GetFriendsByUserIdAsync(int userId);
         Task UpdateAsync(int idUser,int idFriend);
-        public Task<List<Friends>> GetFriendsByFriendIdAsync(int friendId);
+        public Task <Friends> GetFriendsByFriendIdAsync(int userId, int friendId);
 
 
-        public Task<List<Friends>> GetFriendsByFriendPendingAsync(int friendId);
+        public Task<List<Friends>> GetFriendsByFriendPendingAsync(int userId);
 
-        public Task <Friends> GetFriendsByFriendIdPendingAsync(int friendId);
+        public Task <Friends> GetFriendsByFriendIdPendingAsync(int userId, int friendId);
+
+        public Task DeleteAsync(int userId, int idFriend);
+        
 
 
 
