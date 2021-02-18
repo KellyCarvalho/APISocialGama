@@ -13,5 +13,6 @@ namespace InstaGama.Domain.Interfaces
         Task<Invite> GetByUserAsync(int idUser);
         Task<Invite> GetByFriendAsync(int idUser);
         Task<Invite> GetByIdAsync(int id);
+        Task DeleteAsync(int id);
     }
 }

@@ -190,5 +190,29 @@ namespace InstaGama.Repositories
                 }
             }
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = $@"DELETE 
+                                FROM
+                                Convite
+                               WHERE 
+                                Id={id}";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                            await cmd
+                           .ExecuteScalarAsync()
+                           .ConfigureAwait(false);
+                }
+            }
+        }
+
+
     }
 }

@@ -12,6 +12,11 @@ namespace InstaGama.Application.AppFriends.Interfaces
         Task<Friends> InsertAsync(FriendsInput friendsInput);
 
         Task<List<Friends>> GetFriendsByUserIdAsync();
-        Task<Friends> GetByIdFriendAsync(int friendId);
+        Task<Friends> UpdateAsync(int idfriend);
+
+        public Task<List<Friends>> GetFriendsByFriendPendingIdAsync();
+
+        //public Task<Friends> GetFriendsByFriendIdPendecyAsync(int friendId);
+
     }
 }

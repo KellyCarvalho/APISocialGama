@@ -20,7 +20,7 @@ namespace InstaGama.Api
 {
     public class Startup
     {
-        private OpenApiSecurityScheme securitySchema;
+   
 
         public Startup(IConfiguration configuration)
         {

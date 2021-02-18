@@ -62,6 +62,8 @@ namespace InstaGama.Repositories
             }
         }
 
+       
+
         public async Task<int> InsertAsync(Postage postage)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))

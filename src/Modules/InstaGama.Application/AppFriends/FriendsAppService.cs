@@ -23,34 +23,24 @@ namespace InstaGama.Application.AppFriends
             _logged = logged;
         }
 
-        public async Task<Friends> GetByIdFriendAsync(int friendId)
+        public async Task<List<Friends>> GetFriendsByFriendPendingIdAsync()
         {
-            var userLogged = _logged.GetUserLoggedId();
+            var userId = _logged.GetUserLoggedId();
 
-            var friend = await _friendsRepository
-                                .GetByIdFriendAsync(friendId)
-                                .ConfigureAwait(false);
-
-            if(friend is null)
-            {
-                throw new ArgumentException("Usuário Não Existe");
-            }
-
-            return friend;
+            var friends = await _friendsRepository
+                                    .GetFriendsByFriendPendingAsync(userId)
+                                    .ConfigureAwait(false);
+            return friends;
         }
 
         public async Task<List<Friends>> GetFriendsByUserIdAsync()
         {
-            var userLogged = _logged.GetUserLoggedId();
+            var userId = _logged.GetUserLoggedId();
 
             var friends = await _friendsRepository
-                                .GetFriendsByUserIdAsync(userLogged)
-                                .ConfigureAwait(false);
-
-           
-
+                                    .GetFriendsByUserIdAsync(userId)
+                                    .ConfigureAwait(false);
             return friends;
-
         }
 
         public async Task<Friends> InsertAsync(FriendsInput friendsInput)
@@ -58,9 +48,7 @@ namespace InstaGama.Application.AppFriends
             var userId = _logged.GetUserLoggedId();
           
             var friend = new Friends(userId,friendsInput.UserFriendId);
-            var checkFriendExist = _userRepository
-                                    .GetByIdAsync(friendsInput.UserFriendId)
-                                    .ConfigureAwait(false);
+         
 
             if (!friend.IsValid())
             {
@@ -73,6 +61,37 @@ namespace InstaGama.Application.AppFriends
                             .ConfigureAwait(false);
             friend.SetId(id);
             return friend;
+        }
+
+        public async Task<Friends> UpdateAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var checkUserExist= await _userRepository
+                                        .GetByIdAsync(idFriend)
+                                        .ConfigureAwait(false);
+
+            var checkFriendAlredyAcept = await _friendsRepository
+                                                     .GetFriendsByFriendIdAsync(idFriend)
+                                                    .ConfigureAwait(false);
+
+            if(checkUserExist == null)
+            {
+                throw new ArgumentException("Você está tentando fazer uma amizade com um usuário que não está na nossa base de dados");
+            }
+
+            if  (string.IsNullOrEmpty(checkFriendAlredyAcept.ToString()))
+            {
+                throw new ArgumentException("Você já aceitou este amigo");
+            }
+          
+            var friendAcepted = new Friends(userId, idFriend);
+
+            await _friendsRepository
+                   .UpdateAsync(userId, idFriend);
+
+
+            return friendAcepted;
         }
     }
 }

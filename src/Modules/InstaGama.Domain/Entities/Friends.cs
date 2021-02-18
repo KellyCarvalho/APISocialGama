@@ -22,12 +22,13 @@ namespace InstaGama.Domain.Entities
             Pendency = pendency;
         }
 
-
+   
 
         public int Id { get; private set; }
         public int UserId { get; private set; }
         public int UserFriendId { get; private set; }
         public int  Pendency { get; private set; }
+
 
         public bool IsValid()
         {
