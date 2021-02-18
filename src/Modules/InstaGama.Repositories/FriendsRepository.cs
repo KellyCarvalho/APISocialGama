@@ -71,7 +71,7 @@ namespace InstaGama.Repositories
                                 FROM
 										Amigos
                                 WHERE
-										UsuarioId='{userId}' and Pendencia=1;";
+										UsuarioAmigoId='{userId}' and Pendencia=1;";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {
@@ -214,7 +214,7 @@ namespace InstaGama.Repositories
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
 
-                var sqlCmd = @$"UPDATE Amigos SET Pendencia=@pendencia WHERE UsuarioId='{idUser}' and UsuarioAmigoId='{idFriend}';";
+                var sqlCmd = @$"UPDATE Amigos SET Pendencia=@pendencia WHERE UsuarioId='{idFriend}' and UsuarioAmigoId='{idUser}';";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
                 {

@@ -75,7 +75,7 @@ namespace InstaGama.Application.AppFriends
                                                      .GetFriendsByFriendIdAsync(idFriend)
                                                     .ConfigureAwait(false);
 
-            if(checkUserExist == null)
+            if(string.IsNullOrEmpty(checkUserExist.ToString()))
             {
                 throw new ArgumentException("Você está tentando fazer uma amizade com um usuário que não está na nossa base de dados");
             }
@@ -84,14 +84,34 @@ namespace InstaGama.Application.AppFriends
             {
                 throw new ArgumentException("Você já aceitou este amigo");
             }
+
+            var checkIfIdFriendIsEqualToUserId = _friendsRepository
+                                                    .GetFriendsByFriendIdPendingAsync(userId)
+                                                    .ConfigureAwait(false);
+
+            if (!string.IsNullOrEmpty(checkIfIdFriendIsEqualToUserId.ToString()))
+            {
+                var friendAcepted = new Friends(userId, idFriend);
+
+                var receivingTableFriend = new Friends(userId, idFriend,0);
+
+                await _friendsRepository
+                       .UpdateAsync(userId,idFriend);
+
+                await _friendsRepository
+                            .InsertAsync(receivingTableFriend)
+                            .ConfigureAwait(false);
+
+                return friendAcepted;
+            }
+            else
+            {
+                return default;
+            }
+
+           
+
           
-            var friendAcepted = new Friends(userId, idFriend);
-
-            await _friendsRepository
-                   .UpdateAsync(userId, idFriend);
-
-
-            return friendAcepted;
         }
     }
 }

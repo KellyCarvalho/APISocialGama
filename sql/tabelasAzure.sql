@@ -181,40 +181,18 @@ select *from Convite;
                                  IdUsuario=1;
 
 
-CREATE TRIGGER TGR_ACEITAR_AMIGO 
-ON Convite
-FOR UPDATE
-AS
-BEGIN
-
-    UPDATE Amigos SET Pendencia = 1;  
-END
-
-  select *from amigos;  
-
-  UPDATE Convite SET Status_Convite=1 WHERE IdUsuarioConvidado=2;
- 
 
 
-CREATE TRIGGER TGR_ACEITAR_AMIGO
-ON CONVITE
-FOR INSERT
-AS
-BEGIN
-    DECLARE
-    @ID_USUARIO  INT,
-    @ID_AMIGO   INT,
-	@STATUS_CONVITE int
+  select *from amigos; 
+    select *from usuario;  
+  delete amigos;
 
 
-    SELECT @STATUS_CONVITE=STATUS_CONVITE   FROM CONVITE_ACEITO
-
-    UPDATE Amigos  SET Pendencia = 1
-     where STATUS_CONVITE=@STATUS_CONVITE ;
-END
-GO
-
-
-  select *from amigos;  
-  
-  select *from CONVITE;  
+  SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+                                FROM
+										Amigos
+                                WHERE
+										UsuarioAmigoId=3 and Pendencia=0;
