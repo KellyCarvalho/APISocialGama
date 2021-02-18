@@ -65,7 +65,7 @@ namespace InstaGama.Api.Controllers
         public async Task<IActionResult> GetPending()
         {
             var friends = await _friendAppService
-                                    .GetFriendsByFriendPendingIdAsync()
+                                    .GetFriendsByFriendPendingAsync()
                                     .ConfigureAwait(false);
                                     
 
@@ -95,7 +95,23 @@ namespace InstaGama.Api.Controllers
             }
         }
 
-    
+        [HttpDelete]
+        [Route("{idFriend}")]
+        public async Task<IActionResult> Delete([FromRoute] int idFriend)
+        {
+            try
+            {
+                await _friendAppService
+                                    .DeleteAsync(idFriend)
+                                    .ConfigureAwait(false);
+                return Accepted("", "");
+            }
+            catch (ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+
+        }
 
     }
 }

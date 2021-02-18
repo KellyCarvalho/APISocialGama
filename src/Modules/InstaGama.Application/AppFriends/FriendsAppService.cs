@@ -23,7 +23,32 @@ namespace InstaGama.Application.AppFriends
             _logged = logged;
         }
 
-        public async Task<List<Friends>> GetFriendsByFriendPendingIdAsync()
+        public async Task DeleteAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var checkIfExistFriend = await _friendsRepository
+                                            .GetFriendsByFriendIdAsync(userId,idFriend)
+                                            .ConfigureAwait(false);
+
+            if (checkIfExistFriend != null)
+            {
+                await _friendsRepository
+                        .DeleteAsync(userId, idFriend)
+                        .ConfigureAwait(false);
+
+                await _friendsRepository
+                      .DeleteAsync(idFriend, idFriend)
+                      .ConfigureAwait(false);
+            }
+            else
+            {
+                throw new ArgumentException("O usuário que está tentando desfazer a amizade não está na sua lista de amigos");
+            }
+
+        }
+
+        public async Task<List<Friends>> GetFriendsByFriendPendingAsync()
         {
             var userId = _logged.GetUserLoggedId();
 
@@ -48,7 +73,28 @@ namespace InstaGama.Application.AppFriends
             var userId = _logged.GetUserLoggedId();
           
             var friend = new Friends(userId,friendsInput.UserFriendId);
-         
+
+            var checkIfAlredyExist = await _friendsRepository
+                                        .GetFriendsByFriendIdAsync(userId,friendsInput.UserFriendId)
+                                        .ConfigureAwait(false);
+
+            
+
+            var checkIfIsPending = await _friendsRepository
+                                            .GetFriendsByFriendIdPendingAsync(userId,friendsInput.UserFriendId)
+                                            .ConfigureAwait(false);
+
+            if (checkIfAlredyExist.Pendency==0)
+            {
+                throw new ArgumentException("Você já é amigo dessa pessoa");
+            }
+
+          
+
+            if (checkIfIsPending!=null)
+            {
+                throw new ArgumentException("Espere a pessoa aceitar seu convite, pois ainda está pendente");
+            }
 
             if (!friend.IsValid())
             {
@@ -66,52 +112,51 @@ namespace InstaGama.Application.AppFriends
         public async Task<Friends> UpdateAsync(int idFriend)
         {
             var userId = _logged.GetUserLoggedId();
+            var checkIfExistAsFriend = await _friendsRepository
+                                              .GetFriendsByFriendIdAsync(userId,idFriend)
+                                              .ConfigureAwait(false);
 
-            var checkUserExist= await _userRepository
-                                        .GetByIdAsync(idFriend)
-                                        .ConfigureAwait(false);
+            var checkIfPendingExiste = await _friendsRepository
+                                                .GetFriendsByFriendIdPendingAsync(userId, idFriend)
+                                                .ConfigureAwait(false);
 
-            var checkFriendAlredyAcept = await _friendsRepository
-                                                     .GetFriendsByFriendIdAsync(idFriend)
-                                                    .ConfigureAwait(false);
-
-            if(string.IsNullOrEmpty(checkUserExist.ToString()))
+            if(checkIfExistAsFriend!=null)
             {
-                throw new ArgumentException("Você está tentando fazer uma amizade com um usuário que não está na nossa base de dados");
+                throw new ArgumentException("Você já aceitou esta amiga");
             }
 
-            if  (string.IsNullOrEmpty(checkFriendAlredyAcept.ToString()))
-            {
-                throw new ArgumentException("Você já aceitou este amigo");
+            if(checkIfPendingExiste ==null){
+                throw new ArgumentException("Não existe convites pendentes envie um");
             }
 
-            var checkIfIdFriendIsEqualToUserId = _friendsRepository
-                                                    .GetFriendsByFriendIdPendingAsync(userId)
-                                                    .ConfigureAwait(false);
-
-            if (!string.IsNullOrEmpty(checkIfIdFriendIsEqualToUserId.ToString()))
+            if(checkIfPendingExiste != null)
             {
-                var friendAcepted = new Friends(userId, idFriend);
+                if (checkIfPendingExiste.UserFriendId==userId)
+                {
+                    
 
-                var receivingTableFriend = new Friends(userId, idFriend,0);
+                    var friendshipAcepted = new Friends(userId, idFriend, 0);
 
-                await _friendsRepository
-                       .UpdateAsync(userId,idFriend);
+                    await _friendsRepository
+                          .UpdateAsync(userId, idFriend);
 
-                await _friendsRepository
-                            .InsertAsync(receivingTableFriend)
-                            .ConfigureAwait(false);
+                    await _friendsRepository
+                          .InsertAsync(friendshipAcepted)
+                          .ConfigureAwait(false);
 
-                return friendAcepted;
+
+                    return friendshipAcepted;
+
+                }
+
+         
+               
             }
-            else
-            {
-                return default;
-            }
 
-           
+            return default;
 
-          
         }
+
+
     }
 }

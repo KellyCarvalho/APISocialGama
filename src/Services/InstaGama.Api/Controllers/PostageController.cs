@@ -108,6 +108,21 @@ namespace InstaGama.Api.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        [Route("{idFriend}")]
+        public async Task<IActionResult> GetPostageByIdFriends( int idFriend)
+        {
+            var postageAllfriends = await _postageAppService
+                                   .GetPostageFriendIdAsync(idFriend)
+                                   .ConfigureAwait(false);
+
+            if (postageAllfriends is null)
+                return NoContent();
+
+            return Ok(postageAllfriends);
+        }
+
+        [Authorize]
         [HttpPost]
         [Route("{id}/Likes")]
         public async Task<IActionResult> PostLike([FromRoute] int id)

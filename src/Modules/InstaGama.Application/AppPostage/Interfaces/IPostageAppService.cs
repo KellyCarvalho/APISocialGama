@@ -11,6 +11,8 @@ namespace InstaGama.Application.AppPostage.Interfaces
         Task<List<Postage>> GetPostageByUserIdAsync();
         Task<List<Postage>> GetPostageFriendAsync();
 
+        Task<List<Postage>> GetPostageFriendIdAsync(int idFriend);
+
 
 
 
