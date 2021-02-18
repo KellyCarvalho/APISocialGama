@@ -20,6 +20,16 @@ namespace InstaGama.Application.AppPostage
             _logged = logged;
         }
 
+        public async Task<List<Postage>> GetPostageFriendAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var postagesFriends = await _postageRepository
+                                    .GetPostageFriendAsync(userId)
+                                    .ConfigureAwait(false);
+            return postagesFriends;
+        }
+
         public async Task<List<Postage>> GetPostageByUserIdAsync()
         {
             var userId = _logged.GetUserLoggedId();

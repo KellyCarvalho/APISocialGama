@@ -181,11 +181,11 @@ select *from Convite;
                                  IdUsuario=1;
 
 
-
+  delete amigos;
 
   select *from amigos; 
     select *from usuario;  
-  delete amigos;
+
 
 
   SELECT Id,
