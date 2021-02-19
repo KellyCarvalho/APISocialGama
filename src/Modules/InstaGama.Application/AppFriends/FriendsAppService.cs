@@ -84,14 +84,19 @@ namespace InstaGama.Application.AppFriends
                                             .GetFriendsByFriendIdPendingAsync(userId,friendsInput.UserFriendId)
                                             .ConfigureAwait(false);
 
-            if (checkIfAlredyExist.Pendency==0)
+            var checkIfIsPending2 = await _friendsRepository
+                                            .GetFriendsByFriendIdPendingAsync(friendsInput.UserFriendId, userId)
+                                            .ConfigureAwait(false);
+
+
+            if (checkIfAlredyExist != null)
             {
                 throw new ArgumentException("Você já é amigo dessa pessoa");
             }
 
           
 
-            if (checkIfIsPending!=null)
+            if (checkIfIsPending2 != null)
             {
                 throw new ArgumentException("Espere a pessoa aceitar seu convite, pois ainda está pendente");
             }
