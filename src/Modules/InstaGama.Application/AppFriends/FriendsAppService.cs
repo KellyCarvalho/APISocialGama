@@ -48,6 +48,16 @@ namespace InstaGama.Application.AppFriends
 
         }
 
+        public async Task<Friends> GetFriendsByFriendIdAsync(int idfriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetFriendsByFriendIdAsync(userId, idfriend)
+                                    .ConfigureAwait(false);
+            return friends;
+        }
+
         public async Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId)
         {
             var userId = _logged.GetUserLoggedId();
