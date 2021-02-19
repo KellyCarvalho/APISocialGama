@@ -255,5 +255,107 @@ namespace InstaGama.Repositories
                 }
             }
         }
+
+        public async Task<List<User>> GetProfileAllFriends(int userId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$" SELECT u.Id,
+                                        u.Nome,
+                                        g.descricao,
+                                        u.GeneroId,
+                                        u.Email,
+                                        u.DataNascimento,
+                                        u.Foto
+                                        FROM 
+                                        Usuario u
+                                        INNER JOIN Amigos a 
+                                        on a.UsuarioAmigoId=u.Id
+                                        Inner Join Genero g
+                                        on u.GeneroId=g.Id
+                                        where a.UsuarioId='{userId}';";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+                    var userFriend = new List<User>();
+
+                    while (reader.Read())
+                    {
+                        var user = new User(int.Parse(reader["Id"].ToString()),
+                                             reader["Email"].ToString(),
+                                             reader["Nome"].ToString(),
+                                             DateTime.Parse(reader["DataNascimento"].ToString()),
+                                             new Gender(reader["Descricao"].ToString()),
+                                             reader["Foto"].ToString());
+
+                        user.SetId(int.Parse(reader["id"].ToString()));
+                        user.Gender.SetId(int.Parse(reader["GeneroId"].ToString()));
+                        userFriend.Add(user);
+
+                        return userFriend;
+                    }
+
+                    return default;
+                }
+            }
+        }
+
+        public async Task<User> GetProfileFriendById(int idUser,int friendId)
+        {
+
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT  u.Id,
+                                        u.Nome,
+                                        g.descricao,
+                                        u.GeneroId,
+                                        u.Email,
+                                        u.DataNascimento,
+                                        u.Foto
+                                        FROM 
+                                        Usuario u
+                                        INNER JOIN Amigos a 
+                                        on a.UsuarioAmigoId=u.Id
+                                        Inner Join Genero g
+                                        on u.GeneroId=g.Id
+                                        where a.UsuarioId='{idUser}' and a.UsuarioAmigoId='{friendId}';";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+                  
+
+                    while (reader.Read())
+                    {
+                        
+                        var user = new User(int.Parse(reader["Id"].ToString()),
+                                           reader["Email"].ToString(),
+                                           reader["Nome"].ToString(),
+                                           DateTime.Parse(reader["DataNascimento"].ToString()),
+                                           new Gender(reader["Descricao"].ToString()),
+                                           reader["Foto"].ToString());
+
+                        user.SetId(int.Parse(reader["id"].ToString()));
+                        user.Gender.SetId(int.Parse(reader["GeneroId"].ToString()));
+        
+
+                        return user;
+                    }
+
+                    return default;
+                }
+            }
+        }
     }
 }

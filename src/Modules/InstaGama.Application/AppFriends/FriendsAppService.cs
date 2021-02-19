@@ -88,6 +88,8 @@ namespace InstaGama.Application.AppFriends
             return friends;
         }
 
+      
+
         public async Task<Friends> InsertAsync(FriendsInput friendsInput)
         {
             var userId = _logged.GetUserLoggedId();
@@ -190,6 +192,26 @@ namespace InstaGama.Application.AppFriends
 
             return default;
 
+        }
+
+        public async Task<List<User>> GetProfileAllFriends()
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetProfileAllFriends(userId)
+                                    .ConfigureAwait(false);
+            return friends;
+        }
+
+        public async Task<User> GetProfileFriendById(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetProfileFriendById(userId,idFriend)
+                                    .ConfigureAwait(false);
+            return friends;
         }
 
 

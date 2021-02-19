@@ -113,6 +113,42 @@ namespace InstaGama.Api.Controllers
             return Ok(friends);
         }
 
+        [Authorize]
+        [HttpGet]
+        [Route("Profile/{idfriend}")]
+        public async Task<IActionResult> GetProfile(int idfriend)
+        {
+            var friends = await _friendAppService
+                                    .GetProfileFriendById(idfriend)
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Profile/")]
+        public async Task<IActionResult> GetProfileFriends()
+        {
+            var friends = await _friendAppService
+                                    .GetProfileAllFriends()
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
         [HttpPut]
         [Route("{idfriend}")]
         public async Task<IActionResult> Update([FromRoute] int idfriend)
