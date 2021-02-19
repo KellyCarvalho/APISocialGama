@@ -19,6 +19,28 @@ namespace InstaGama.Repositories
             _configuration = configuration;
         }
 
+        public async Task DeleteByIdUserAsync(int userId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = $@"DELETE 
+                                FROM
+                                Comentario
+                                WHERE 
+                                UsuarioId={userId}";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    await cmd
+                           .ExecuteScalarAsync()
+                           .ConfigureAwait(false);
+                }
+            }
+        }
+
         public async Task<List<Comments>> GetByPostageIdAsync(int postageId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))

@@ -15,12 +15,76 @@ namespace InstaGama.Application.AppUser
         private readonly IGenderRepository _genderRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILogged _logged;
+        private readonly IFriendsRepository _friendsRepository;
+        private readonly IPostageRepository _postageRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly ILikesRepository _likesRepository;
 
-        public UserAppService(IGenderRepository genderRepository, IUserRepository userRepository, ILogged logged)
+        public UserAppService(IGenderRepository genderRepository, IUserRepository userRepository, 
+                                                ILogged logged, IFriendsRepository friendsRepository, 
+                                                IPostageRepository postageRepository,ICommentRepository commentRepository,
+                                                ILikesRepository likesRepository)
         {
             _genderRepository = genderRepository;
             _userRepository = userRepository;
             _logged = logged;
+            _friendsRepository = friendsRepository;
+            _postageRepository = postageRepository;
+            _commentRepository = commentRepository;
+            _likesRepository = likesRepository;
+        }
+
+        public async Task DeleteUserAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var checkIfUserExist = await _userRepository
+                            .GetByIdAsync(userId)
+                            .ConfigureAwait(false);
+
+           
+            
+
+            
+         
+            
+
+            if (checkIfUserExist != null)
+            {
+
+
+                await _postageRepository
+                        .DeleteAsync(userId)
+                        .ConfigureAwait(false);
+
+                await _commentRepository
+                        .DeleteByIdUserAsync(userId)
+                        .ConfigureAwait(false);
+
+                await _likesRepository
+                        .DeleteAsync(userId)
+                        .ConfigureAwait(false);
+
+                await   _friendsRepository
+                        .DeleteByFriendIdAsync(userId)
+                        .ConfigureAwait(false);
+
+                await _friendsRepository
+                        .DeleteByIdAsync(userId)
+                        .ConfigureAwait(false);
+
+                await _userRepository
+                            .DeleteAsync(userId)
+                            .ConfigureAwait(false);
+
+
+
+
+            }
+            else
+            {
+                throw new ArgumentException("Pessoa não localizada");
+            }
         }
 
         public async Task<UserViewModel> GetByIdAsync(int id)

@@ -13,6 +13,10 @@ namespace InstaGama.Application.AppUser.Interfaces
 
         Task<List<string>> GetPhotosUserAsync();
 
-        public Task<UserViewModel> UpdateAsync(UserInput  input);
+        Task<UserViewModel> UpdateAsync(UserInput  input);
+
+        Task DeleteUserAsync();
+
+
     }
 }

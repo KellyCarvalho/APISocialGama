@@ -290,7 +290,20 @@ Inner Join Genero g
 on u.GeneroId=g.Id
 where a.UsuarioId=2 and a.UsuarioAmigoId=1;
 
+select * from Usuario;
+
+UPDATE Usuario SET Nome=@status_convite,GeneroId=@generoId, Senha=@senha,DataNascimento=@dataNascimento, Foto=@foto   WHERE Id='{idUser}'
+
+UPDATE Usuario SET Nome='Kelly Estagiária',GeneroId=2,  Foto='alguma coisa jpg'   WHERE Id=2;
+
+select * from amigos;
 
 
 
-										
+SELECT u.Id,u.Nome,a.UsuarioAmigoId
+FROM Usuario u
+INNER JOIN Amigos a
+ON u.Id=a.UsuarioId
+INNER JOIN Amigos b
+ON u.Id=b.UsuarioId
+WHERE u.Id=1;

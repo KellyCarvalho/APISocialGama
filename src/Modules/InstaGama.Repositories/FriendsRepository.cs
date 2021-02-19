@@ -256,6 +256,50 @@ namespace InstaGama.Repositories
             }
         }
 
+
+        public async Task DeleteByFriendIdAsync(int id)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = $@"DELETE 
+                                FROM
+                                Amigos
+                                WHERE 
+                                UsuarioAmigoId='{id}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    await cmd
+                   .ExecuteScalarAsync()
+                   .ConfigureAwait(false);
+                }
+            }
+        }
+       
+        public async Task DeleteByIdAsync(int id)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = $@"DELETE 
+                                FROM
+                                Amigos
+                                WHERE 
+                                UsuarioId='{id}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    await cmd
+                   .ExecuteScalarAsync()
+                   .ConfigureAwait(false);
+                }
+            }
+        }
         public async Task<List<User>> GetProfileAllFriends(int userId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
@@ -358,7 +402,90 @@ namespace InstaGama.Repositories
             }
         }
 
+        public async Task<List<Friends>> GetAllFriendAsync(int friendId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId='{friendId}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
 
 
+                    var allfriends = new List<Friends>();
+
+                    while (reader.Read())
+                    {
+
+                        var friend = new Friends(int.Parse(reader["Id"].ToString()),
+                                               int.Parse(reader["UsuarioId"].ToString()),
+                                               int.Parse(reader["UsuarioAmigoId"].ToString()),
+                                               int.Parse(reader["Pendencia"].ToString()));
+
+                        allfriends.Add(friend);
+
+                        return allfriends;
+                    }
+
+                    return default;
+                }
+            }
+        }
+
+        public async Task<List<Friends>> GetAllFriendByIdUserAsync(int userId)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioId='{userId}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+
+                    var allfriends = new List<Friends>();
+
+                    while (reader.Read())
+                    {
+
+                        var friend = new Friends(int.Parse(reader["Id"].ToString()),
+                                               int.Parse(reader["UsuarioId"].ToString()),
+                                               int.Parse(reader["UsuarioAmigoId"].ToString()),
+                                               int.Parse(reader["Pendencia"].ToString()));
+
+                        allfriends.Add(friend);
+
+                        return allfriends;
+                    }
+
+                    return default;
+                }
+            }
+        }
     }
 }

@@ -88,8 +88,21 @@ namespace InstaGama.Api.Controllers
                 return BadRequest(arg.Message);
             }
         }
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
+        {
+            try
+            {
+                await _userAppService
+                            .DeleteUserAsync()
+                            .ConfigureAwait(false);
+                return Accepted("", "");
+            }
+            catch (ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+        }
 
-
-
-    }
+        }
 }
