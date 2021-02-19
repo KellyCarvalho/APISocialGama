@@ -1,5 +1,6 @@
 ﻿using InstaGama.Application.AppFriends.Input;
 using InstaGama.Application.AppFriends.Interfaces;
+using InstaGama.Application.AppUser.Output;
 using InstaGama.Domain.Core.Interfaces;
 using InstaGama.Domain.Entities;
 using InstaGama.Domain.Interfaces;
@@ -194,24 +195,54 @@ namespace InstaGama.Application.AppFriends
 
         }
 
-        public async Task<List<User>> GetProfileAllFriends()
+        public async Task<List<UserViewModel>> GetProfileAllFriends()
         {
             var userId = _logged.GetUserLoggedId();
 
             var friends = await _friendsRepository
                                     .GetProfileAllFriends(userId)
                                     .ConfigureAwait(false);
-            return friends;
+
+            var allfriends = new List<UserViewModel>();
+
+            foreach (var amigo in friends)
+            {
+              var convertUserToView = new UserViewModel()
+               {
+                   Id = amigo.Id,
+                   Name = amigo.Name,
+                   Birthday = amigo.Birthday,
+                   Email = amigo.Email,
+                   Gender = amigo.Gender,
+                   Photo = amigo.Photo
+               };
+
+                allfriends.Add(convertUserToView);
+
+            }
+
+
+
+            return allfriends;
         }
 
-        public async Task<User> GetProfileFriendById(int idFriend)
+        public async Task<UserViewModel> GetProfileFriendById(int idFriend)
         {
             var userId = _logged.GetUserLoggedId();
 
             var friends = await _friendsRepository
                                     .GetProfileFriendById(userId,idFriend)
                                     .ConfigureAwait(false);
-            return friends;
+              return new UserViewModel()
+            {
+                Id = friends.Id,
+                Name = friends.Name,
+                Birthday = friends.Birthday,
+                Email = friends.Email,
+                Gender = friends.Gender,
+                Photo = friends.Photo
+            };
+            
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using InstaGama.Application.AppFriends.Input;
+using InstaGama.Application.AppUser.Output;
 using InstaGama.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace InstaGama.Application.AppFriends.Interfaces
         public Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId);
         Task DeleteAsync(int idFriend);
 
-        public Task<List<User>> GetProfileAllFriends();
+        public Task<List<UserViewModel>> GetProfileAllFriends();
 
-        public Task<User> GetProfileFriendById(int idFriend);
+        public Task<UserViewModel> GetProfileFriendById(int idFriend);
 
 
 
