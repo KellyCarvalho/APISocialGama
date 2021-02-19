@@ -61,13 +61,31 @@ namespace InstaGama.Api.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("Pendente")]
+        [Route("Pending")]
         public async Task<IActionResult> GetPending()
         {
             var friends = await _friendAppService
                                     .GetFriendsByFriendPendingAsync()
                                     .ConfigureAwait(false);
                                     
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Pending/{idfriend}")]
+        public async Task<IActionResult> GetPendingIdfriend(int idfriend)
+        {
+            var friends = await _friendAppService
+                                    .GetFriendsByFriendIdPendingAsync(idfriend)
+                                    .ConfigureAwait(false);
+
 
             if (friends is null)
             {

@@ -48,6 +48,16 @@ namespace InstaGama.Application.AppFriends
 
         }
 
+        public async Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetFriendsByFriendIdPendingAsync(userId,friendId)
+                                    .ConfigureAwait(false);
+            return friends;
+        }
+
         public async Task<List<Friends>> GetFriendsByFriendPendingAsync()
         {
             var userId = _logged.GetUserLoggedId();
@@ -108,7 +118,7 @@ namespace InstaGama.Application.AppFriends
 
             if (checkIfIsPending1 != null)
             {
-                throw new ArgumentException("Existe uma solicitação a ser aceita para você enviada por esta amiga, apenas aceite o convite");
+                throw new ArgumentException("Existe uma solicitação a ser aceita por você enviada por esta amiga, apenas aceite o convite");
             }
 
             if (!friend.IsValid())
@@ -137,11 +147,11 @@ namespace InstaGama.Application.AppFriends
 
             if(checkIfExistAsFriend!=null)
             {
-                throw new ArgumentException("Você já aceitou esta amiga");
+                throw new ArgumentException("Você já aceitou esta pessoa");
             }
 
             if(checkIfPendingExiste ==null){
-                throw new ArgumentException("Não existe convites pendentes envie um");
+                throw new ArgumentException("Não existe convites pendentes envie um para esta pessoa");
             }
 
             if(checkIfPendingExiste != null)

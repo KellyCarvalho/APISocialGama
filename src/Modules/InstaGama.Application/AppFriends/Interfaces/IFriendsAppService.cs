@@ -15,6 +15,8 @@ namespace InstaGama.Application.AppFriends.Interfaces
         Task<Friends> UpdateAsync(int idfriend);
 
         Task<List<Friends>> GetFriendsByFriendPendingAsync();
+
+        public Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId);
         Task DeleteAsync(int idFriend);
 
 
