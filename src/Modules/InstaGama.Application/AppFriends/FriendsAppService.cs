@@ -34,14 +34,14 @@ namespace InstaGama.Application.AppFriends
             if (checkIfExistFriend != null)
             {
                 await _friendsRepository
-                        .DeleteAsync(userId, idFriend)
+                        .DeleteAsync(checkIfExistFriend.UserId, checkIfExistFriend.UserFriendId)
                         .ConfigureAwait(false);
 
                 await _friendsRepository
-                      .DeleteAsync(idFriend, idFriend)
+                      .DeleteAsync(checkIfExistFriend.UserFriendId,checkIfExistFriend.UserId)
                       .ConfigureAwait(false);
             }
-            else
+            if (checkIfExistFriend == null)
             {
                 throw new ArgumentException("O usuário que está tentando desfazer a amizade não está na sua lista de amigos");
             }
