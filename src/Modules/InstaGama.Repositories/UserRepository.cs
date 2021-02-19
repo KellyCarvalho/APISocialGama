@@ -192,5 +192,37 @@ namespace InstaGama.Repositories
 
 
 
+        public async Task UpdateAsync(User user, int idUser)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+
+                var sqlCmd = @$"UPDATE Usuario SET Nome=@nome,GeneroId=@generoId, Email=@email, Senha=@senha,DataNascimento=@dataNascimento, Foto=@foto   WHERE Id='{idUser}'";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("nome", user.Name);
+                    cmd.Parameters.AddWithValue("generoId", user.Gender.Id);
+                    cmd.Parameters.AddWithValue("email", user.Email);
+                    cmd.Parameters.AddWithValue("senha", user.Password);
+                    cmd.Parameters.AddWithValue("dataNascimento", user.Birthday);
+                    cmd.Parameters.AddWithValue("foto", user.Photo);
+                    con.Open();
+
+                                       await cmd
+                                      .ExecuteScalarAsync()
+                                      .ConfigureAwait(false);
+
+                 
+
+
+
+                }
+            }
+        }
+
+
+
     }
 }

@@ -112,7 +112,7 @@ ALTER TABLE dbo.Amigos
       REFERENCES dbo.Usuario (Id);
 -----------------------------------------------------------------------------------	 
 
-INSERT INTO Amigos Values(1,2,1);
+INSERT INTO Amigos Values(3,1,1);
  select *from Amigos;
   select *from usuario;
 INSERT INTO Genero VALUES ('Masculino'); 
@@ -204,6 +204,7 @@ delete Amigos;
 
 select * from Amigos;
 
+
 										SELECT Id,
 										UsuarioId,
                                         UsuarioAmigoId,
@@ -212,3 +213,84 @@ select * from Amigos;
 										Amigos
 										WHERE
 										UsuarioAmigoId=1 and Pendencia=0 and UsuarioId=2;
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=3 and Pendencia=0 and UsuarioId=1
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+                                FROM
+										Amigos
+                                WHERE
+										UsuarioAmigoId=3 and Pendencia=1;
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+                                FROM
+										Amigos
+                                WHERE
+										UsuarioAmigoId=3 and Pendencia=0 and UsuarioId=1
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=3 and Pendencia=1 and UsuarioId=1;
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=3 and Pendencia=1 and UsuarioId=1;
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId=1 and Pendencia=1 and UsuarioId=3
+
+										SELECT Id,
+										UsuarioId,
+                                        UsuarioAmigoId,
+										Pendencia
+										FROM
+										Amigos
+										WHERE
+										UsuarioAmigoId='{friendId}' and Pendencia=1 and UsuarioId='{userId}'
+select *from usuario;
+SELECT u.Id,
+u.Nome,
+u.Email,
+u.DataNascimento,
+u.Foto
+FROM 
+Usuario u
+INNER JOIN Amigos a 
+on a.UsuarioAmigoId=u.Id
+Inner Join Genero g
+on u.GeneroId=g.Id
+where a.UsuarioId=2 and a.UsuarioAmigoId=1;
+
+
+
+
+										

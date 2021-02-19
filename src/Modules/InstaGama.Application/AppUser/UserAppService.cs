@@ -103,5 +103,44 @@ namespace InstaGama.Application.AppUser
                 Photo = user.Photo
             };
         }
+
+        public async Task<UserViewModel> UpdateAsync(UserInput input)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var gender = await _genderRepository
+                            .GetByIdAsync(input.GenderId);
+
+       
+
+            var userUpdated = new User(input.Email,input.Password,input.Name,input.Birthday, gender, input.Photo);
+
+            await _userRepository
+                 .UpdateAsync(userUpdated, userId)
+                 .ConfigureAwait(false);
+
+            var checkIfUserIsSameLogged = await _userRepository
+                                            .GetByIdAsync(userId)
+                                            .ConfigureAwait(false);
+
+            if (checkIfUserIsSameLogged.Id == userId)
+            {
+                return new UserViewModel()
+                {
+                    Id = userId,
+                    Name = userUpdated.Name,
+                    Birthday = userUpdated.Birthday,
+                    Email = userUpdated.Email,
+                    Gender = userUpdated.Gender,
+                    Photo = userUpdated.Photo
+                };
+
+               
+            }
+
+
+            return default;
+
+        }
     }
 }

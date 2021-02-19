@@ -11,7 +11,10 @@ namespace InstaGama.Domain.Interfaces
         Task<User> GetByIdAsync(int id);
         Task<List<string>> GetPhotosUserAsync(int userId);
 
-    
+        public Task UpdateAsync(User user, int idUser);
+
+
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using InstaGama.Application.AppUser.Input;
 using InstaGama.Application.AppUser.Output;
+using InstaGama.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +12,7 @@ namespace InstaGama.Application.AppUser.Interfaces
         Task<UserViewModel> GetByIdAsync(int id);
 
         Task<List<string>> GetPhotosUserAsync();
+
+        public Task<UserViewModel> UpdateAsync(UserInput  input);
     }
 }

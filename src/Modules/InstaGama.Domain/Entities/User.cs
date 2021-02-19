@@ -31,6 +31,8 @@ namespace InstaGama.Domain.Entities
             Photo = photo;
         }
 
+        
+
         public User(string name,
                      DateTime birthday,
                      Gender gender,
