@@ -109,7 +109,7 @@ namespace InstaGama.Api.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("{idFriend}")]
+        [Route("Friend/{idFriend}")]
         public async Task<IActionResult> GetPostageByIdFriends( int idFriend)
         {
             var postageAllfriends = await _postageAppService
