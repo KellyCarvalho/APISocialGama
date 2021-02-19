@@ -80,13 +80,18 @@ namespace InstaGama.Application.AppFriends
 
             
 
-            var checkIfIsPending = await _friendsRepository
+            var checkIfIsPending1 = await _friendsRepository
                                             .GetFriendsByFriendIdPendingAsync(userId,friendsInput.UserFriendId)
                                             .ConfigureAwait(false);
 
             var checkIfIsPending2 = await _friendsRepository
                                             .GetFriendsByFriendIdPendingAsync(friendsInput.UserFriendId, userId)
                                             .ConfigureAwait(false);
+
+            if (userId == friendsInput.UserFriendId)
+            {
+                throw new ArgumentException("Você está tentando enviar uma solicitação para si mesmo, isso não é permitido");
+            }
 
 
             if (checkIfAlredyExist != null)
@@ -99,6 +104,11 @@ namespace InstaGama.Application.AppFriends
             if (checkIfIsPending2 != null)
             {
                 throw new ArgumentException("Espere a pessoa aceitar seu convite, pois ainda está pendente");
+            }
+
+            if (checkIfIsPending1 != null)
+            {
+                throw new ArgumentException("Existe uma solicitação a ser aceita para você enviada por esta amiga, apenas aceite o convite");
             }
 
             if (!friend.IsValid())
