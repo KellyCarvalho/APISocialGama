@@ -53,29 +53,38 @@ namespace InstaGama.Application.AppUser
             {
 
 
-                await _postageRepository
-                        .DeleteAsync(userId)
-                        .ConfigureAwait(false);
+                await _likesRepository
+                               .DeleteAsyncByUser(userId)
+                               .ConfigureAwait(false);
 
                 await _commentRepository
-                        .DeleteByIdUserAsync(userId)
-                        .ConfigureAwait(false);
+                         .DeleteByIdUserAsync(userId)
+                         .ConfigureAwait(false);
 
-                await _likesRepository
-                        .DeleteAsync(userId)
-                        .ConfigureAwait(false);
+                await _postageRepository
+                          .DeleteAsync(userId)
+                          .ConfigureAwait(false);
+                
+
+
+
+
 
                 await   _friendsRepository
                         .DeleteByFriendIdAsync(userId)
                         .ConfigureAwait(false);
-
                 await _friendsRepository
                         .DeleteByIdAsync(userId)
                         .ConfigureAwait(false);
 
+
                 await _userRepository
                             .DeleteAsync(userId)
                             .ConfigureAwait(false);
+
+               
+
+
 
 
 
