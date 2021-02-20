@@ -25,6 +25,8 @@ namespace InstaGama.Application.AppFriends.Interfaces
         public Task<List<UserViewModel>> GetProfileAllFriends();
 
         public Task<UserViewModel> GetProfileFriendById(int idFriend);
+        Task<List<string>> GetPhotosFriendsAsync();
+        Task<List<string>> GetPhotosFriendByIdAsync(int idFriend);
 
 
 

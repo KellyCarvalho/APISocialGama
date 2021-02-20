@@ -34,6 +34,9 @@ namespace InstaGama.Domain.Interfaces
         Task DeleteByFriendIdAsync(int id);
 
         Task DeleteByIdAsync(int id);
+        
+        Task<List<string>> GetPhotosFriendsAsync(int idUser);
+        Task<List<string>> GetPhotosFriendByIdAsync(int iduser, int idFriend);
 
 
 

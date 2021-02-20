@@ -487,5 +487,79 @@ namespace InstaGama.Repositories
                 }
             }
         }
+
+        public async Task<List<string>> GetPhotosFriendsAsync(int idUser)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT p.Foto
+                                FROM Postagem p
+                                INNER JOIN	Amigos a
+                                ON a.UsuarioAmigoId=p.UsuarioId
+                                WHERE a.UsuarioId='{idUser}' and Pendencia=0;";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+                    var photosForUser = new List<string>();
+
+                    while (reader.Read())
+                    {
+                        var photos = reader["Foto"].ToString();
+                        if (!string.IsNullOrEmpty(photos))
+                        {
+                            photosForUser.Add(photos);
+                        }
+
+                    }
+
+                    return photosForUser;
+                }
+            }
+
+        }
+
+        public async Task<List<string>> GetPhotosFriendByIdAsync(int iduser, int idFriend)
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT p.Foto
+                                        FROM Postagem p
+                                        INNER JOIN	Amigos a
+                                        ON a.UsuarioAmigoId=p.UsuarioId
+                                        WHERE a.UsuarioId='{iduser}' and a.UsuarioAmigoId='{idFriend}' and Pendencia=0";
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+                    var photosForUser = new List<string>();
+
+                    while (reader.Read())
+                    {
+                        var photos = reader["Foto"].ToString();
+                        if (!string.IsNullOrEmpty(photos))
+                        {
+                            photosForUser.Add(photos);
+                        }
+
+                    }
+
+                    return photosForUser;
+                }
+            }
+
+        }
     }
 }

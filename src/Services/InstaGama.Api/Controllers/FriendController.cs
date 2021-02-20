@@ -59,6 +59,8 @@ namespace InstaGama.Api.Controllers
             return Ok(friends);
         }
 
+
+
         [Authorize]
         [HttpGet]
         [Route("Pending")]
@@ -183,6 +185,40 @@ namespace InstaGama.Api.Controllers
                 return BadRequest(arg.Message);
             }
 
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("AllPhotosFriends/")]
+        public async Task<IActionResult> GetAllPhotosFriends()
+        {
+            var allPhotosFriends = await _friendAppService
+                                    .GetPhotosFriendsAsync()
+                                    .ConfigureAwait(false);
+
+            if (allPhotosFriends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(allPhotosFriends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("{idFriend}/PhotosFriend/")]
+        public async Task<IActionResult> GetPhotosFriendById(int idFriend)
+        {
+            var allPhotosFriend = await _friendAppService
+                                    .GetPhotosFriendByIdAsync(idFriend)
+                                    .ConfigureAwait(false);
+
+            if (allPhotosFriend is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(allPhotosFriend);
         }
 
     }

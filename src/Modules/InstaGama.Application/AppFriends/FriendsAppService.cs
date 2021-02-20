@@ -248,6 +248,24 @@ namespace InstaGama.Application.AppFriends
             
         }
 
+        public async Task<List<string>> GetPhotosFriendsAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+            var photosAllFriends = await _friendsRepository
+                                            .GetPhotosFriendsAsync(userId)
+                                            .ConfigureAwait(false);
 
+            return photosAllFriends;
+        }
+
+        public async Task<List<string>> GetPhotosFriendByIdAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+            var photosFriend = await _friendsRepository
+                                            .GetPhotosFriendsAsync(userId)
+                                            .ConfigureAwait(false);
+
+            return photosFriend;
+        }
     }
 }
