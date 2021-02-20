@@ -164,7 +164,7 @@ namespace InstaGama.Application.AppFriends
             }
 
             if(checkIfPendingExiste ==null){
-                throw new ArgumentException("Não existe convites pendentes envie um para esta pessoa");
+                throw new ArgumentException("Não existe convite pendentes a ser aceito enviado por esta pessoa");
             }
 
             if(checkIfPendingExiste != null)
@@ -195,7 +195,7 @@ namespace InstaGama.Application.AppFriends
 
         }
 
-        public async Task<List<UserViewModel>> GetProfileAllFriends()
+        public async Task <List<UserViewModel>> GetProfileAllFriends()
         {
             var userId = _logged.GetUserLoggedId();
 
@@ -204,22 +204,25 @@ namespace InstaGama.Application.AppFriends
                                     .ConfigureAwait(false);
 
             var allfriends = new List<UserViewModel>();
-
-            foreach (var amigo in friends)
+            
+            foreach(var friend in friends)
             {
-              var convertUserToView = new UserViewModel()
-               {
-                   Id = amigo.Id,
-                   Name = amigo.Name,
-                   Birthday = amigo.Birthday,
-                   Email = amigo.Email,
-                   Gender = amigo.Gender,
-                   Photo = amigo.Photo
-               };
+                var convertUserToView = new UserViewModel()
+                {
+                    Id = friend.Id,
+                    Name = friend.Name,
+                    Birthday = friend.Birthday,
+                    Email = friend.Email,
+                    Gender = friend.Gender,
+                    Photo = friend.Photo
+                };
 
                 allfriends.Add(convertUserToView);
 
             }
+
+
+
 
 
 

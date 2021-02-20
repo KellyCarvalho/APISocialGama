@@ -150,7 +150,7 @@ namespace InstaGama.Api.Controllers
         }
 
         [HttpPut]
-        [Route("{idfriend}")]
+        [Route("{idfriend}/Acceptfriendship")]
         public async Task<IActionResult> Update([FromRoute] int idfriend)
         {
             try

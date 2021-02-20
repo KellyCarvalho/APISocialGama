@@ -26,7 +26,7 @@ namespace InstaGama.Domain.Interfaces
 
         public Task <Friends> GetFriendsByFriendIdPendingAsync(int userId, int friendId);
 
-        public Task<List<Friends>> GetAllFriendAsync(int friendId);
+        public Task<Friends> GetAllFriendAsync(int friendId);
 
         public Task<List<Friends>> GetAllFriendByIdUserAsync(int userId);
 

@@ -66,7 +66,56 @@ namespace InstaGama.Repositories
             }
         }
 
-   
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            using (var con = new SqlConnection(_configuration["ConnectionString"]))
+            {
+                var sqlCmd = @$"SELECT u.Id,
+	                                 u.Nome,
+	                                 u.Email,
+	                                 u.Senha,
+                                     u.DataNascimento,
+                                     u.Foto,
+	                                 g.Id as GeneroId,
+	                                 g.Descricao
+                                FROM 
+	                                Usuario u
+                                INNER JOIN 
+	                                Genero g ON g.Id = u.GeneroId;";
+                var allUsers = new List<User>();
+
+                using (var cmd = new SqlCommand(sqlCmd, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+                    var reader = await cmd
+                                        .ExecuteReaderAsync()
+                                        .ConfigureAwait(false);
+
+                    while (reader.Read())
+                    {
+                        var user = new User(reader["Email"].ToString(),
+                                            reader["Senha"].ToString(),
+                                            reader["Nome"].ToString(),
+                                            DateTime.Parse(reader["DataNascimento"].ToString()),
+                                            new Gender(reader["Descricao"].ToString()),
+                                            reader["Foto"].ToString());
+
+                        user.SetId(int.Parse(reader["id"].ToString()));
+                        user.Gender.SetId(int.Parse(reader["GeneroId"].ToString()));
+
+                        allUsers.Add(user);
+
+                    
+                    }
+
+                    return allUsers;
+                }
+            }
+        }
+
+
 
         public async Task<User> GetByLoginAsync(string login)
         {

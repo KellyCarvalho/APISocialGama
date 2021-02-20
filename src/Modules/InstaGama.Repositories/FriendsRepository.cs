@@ -342,10 +342,10 @@ namespace InstaGama.Repositories
                         user.Gender.SetId(int.Parse(reader["GeneroId"].ToString()));
                         userFriend.Add(user);
 
-                        return userFriend;
+                       
                     }
 
-                    return default;
+                    return userFriend;
                 }
             }
         }
@@ -402,7 +402,7 @@ namespace InstaGama.Repositories
             }
         }
 
-        public async Task<List<Friends>> GetAllFriendAsync(int friendId)
+        public async Task<Friends> GetAllFriendAsync(int friendId)
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
@@ -435,9 +435,9 @@ namespace InstaGama.Repositories
                                                int.Parse(reader["UsuarioAmigoId"].ToString()),
                                                int.Parse(reader["Pendencia"].ToString()));
 
-                        allfriends.Add(friend);
+                       
 
-                        return allfriends;
+                        return friend;
                     }
 
                     return default;

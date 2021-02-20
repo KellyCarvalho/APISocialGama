@@ -70,6 +70,21 @@ namespace InstaGama.Api.Controllers
 
             return Ok(photos);
         }
+
+        
+        [HttpGet]
+        [Route("AllUsers/")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var photos = await _userAppService
+                                .GetAllUsersAsync()
+                                .ConfigureAwait(false);
+
+            if (photos is null)
+                return NotFound();
+
+            return Ok(photos);
+        }
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UserInput userInput)

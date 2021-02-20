@@ -11,8 +11,9 @@ namespace InstaGama.Domain.Interfaces
         Task<User> GetByIdAsync(int id);
         Task<List<string>> GetPhotosUserAsync(int userId);
 
-        public Task UpdateAsync(User user, int idUser);
-        public Task DeleteAsync( int idUser);
+        Task UpdateAsync(User user, int idUser);
+        Task DeleteAsync( int idUser);
+        Task<List<User>> GetAllUsersAsync();
 
 
 

@@ -87,6 +87,21 @@ namespace InstaGama.Application.AppUser
             }
         }
 
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            var users = await _userRepository
+                                   .GetAllUsersAsync()
+                                   .ConfigureAwait(false);
+
+            var allUsers = new List<UserViewModel>();
+
+         
+
+            return users;
+
+           
+        }
+
         public async Task<UserViewModel> GetByIdAsync(int id)
         {
             var user = await _userRepository
