@@ -17,7 +17,7 @@ namespace InstaGama.Application.AppUser.Interfaces
 
         Task DeleteUserAsync();
 
-        Task <List<User>> GetAllUsersAsync();
+        Task <List<UserViewModel>> GetAllUsersAsync();
 
 
     }

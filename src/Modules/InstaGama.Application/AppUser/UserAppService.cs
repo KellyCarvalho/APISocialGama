@@ -96,7 +96,7 @@ namespace InstaGama.Application.AppUser
             }
         }
 
-        public async Task<List<User>> GetAllUsersAsync()
+        public async Task<List<UserViewModel>> GetAllUsersAsync()
         {
             var users = await _userRepository
                                    .GetAllUsersAsync()
@@ -104,9 +104,32 @@ namespace InstaGama.Application.AppUser
 
             var allUsers = new List<UserViewModel>();
 
-         
 
-            return users;
+            if (users is null)
+                return default;
+
+            foreach (var user in users)
+            {
+
+             var convert =   new UserViewModel()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Birthday = user.Birthday,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    Photo = user.Photo
+                };
+
+                allUsers.Add(convert);
+
+            }
+
+            
+
+
+
+            return allUsers;
 
            
         }
