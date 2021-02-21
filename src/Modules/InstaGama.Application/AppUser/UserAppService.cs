@@ -15,12 +15,123 @@ namespace InstaGama.Application.AppUser
         private readonly IGenderRepository _genderRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILogged _logged;
+        private readonly IFriendsRepository _friendsRepository;
+        private readonly IPostageRepository _postageRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly ILikesRepository _likesRepository;
 
-        public UserAppService(IGenderRepository genderRepository, IUserRepository userRepository, ILogged logged)
+        public UserAppService(IGenderRepository genderRepository, IUserRepository userRepository, 
+                                                ILogged logged, IFriendsRepository friendsRepository, 
+                                                IPostageRepository postageRepository,ICommentRepository commentRepository,
+                                                ILikesRepository likesRepository)
         {
             _genderRepository = genderRepository;
             _userRepository = userRepository;
             _logged = logged;
+            _friendsRepository = friendsRepository;
+            _postageRepository = postageRepository;
+            _commentRepository = commentRepository;
+            _likesRepository = likesRepository;
+        }
+
+        public async Task DeleteUserAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var checkIfUserExist = await _userRepository
+                            .GetByIdAsync(userId)
+                            .ConfigureAwait(false);
+
+           
+            
+
+            
+         
+            
+
+            if (checkIfUserExist != null)
+            {
+
+
+                await _likesRepository
+                               .DeleteAsyncByUser(userId)
+                               .ConfigureAwait(false);
+
+                await _commentRepository
+                         .DeleteByIdUserAsync(userId)
+                         .ConfigureAwait(false);
+
+                await _postageRepository
+                          .DeleteAsync(userId)
+                          .ConfigureAwait(false);
+                
+
+
+
+
+
+                await   _friendsRepository
+                        .DeleteByFriendIdAsync(userId)
+                        .ConfigureAwait(false);
+                await _friendsRepository
+                        .DeleteByIdAsync(userId)
+                        .ConfigureAwait(false);
+
+
+                await _userRepository
+                            .DeleteAsync(userId)
+                            .ConfigureAwait(false);
+
+               
+
+
+
+
+
+
+            }
+            else
+            {
+                throw new ArgumentException("Pessoa não localizada");
+            }
+        }
+
+        public async Task<List<UserViewModel>> GetAllUsersAsync()
+        {
+            var users = await _userRepository
+                                   .GetAllUsersAsync()
+                                   .ConfigureAwait(false);
+
+            var allUsers = new List<UserViewModel>();
+
+
+            if (users is null)
+                return default;
+
+            foreach (var user in users)
+            {
+
+             var convert =   new UserViewModel()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Birthday = user.Birthday,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    Photo = user.Photo
+                };
+
+                allUsers.Add(convert);
+
+            }
+
+            
+
+
+
+            return allUsers;
+
+           
         }
 
         public async Task<UserViewModel> GetByIdAsync(int id)
@@ -102,6 +213,45 @@ namespace InstaGama.Application.AppUser
                 Gender = user.Gender,
                 Photo = user.Photo
             };
+        }
+
+        public async Task<UserViewModel> UpdateAsync(UserInput input)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var gender = await _genderRepository
+                            .GetByIdAsync(input.GenderId);
+
+       
+
+            var userUpdated = new User(input.Email,input.Password,input.Name,input.Birthday, gender, input.Photo);
+
+            await _userRepository
+                 .UpdateAsync(userUpdated, userId)
+                 .ConfigureAwait(false);
+
+            var checkIfUserIsSameLogged = await _userRepository
+                                            .GetByIdAsync(userId)
+                                            .ConfigureAwait(false);
+
+            if (checkIfUserIsSameLogged.Id == userId)
+            {
+                return new UserViewModel()
+                {
+                    Id = userId,
+                    Name = userUpdated.Name,
+                    Birthday = userUpdated.Birthday,
+                    Email = userUpdated.Email,
+                    Gender = userUpdated.Gender,
+                    Photo = userUpdated.Photo
+                };
+
+               
+            }
+
+
+            return default;
+
         }
     }
 }

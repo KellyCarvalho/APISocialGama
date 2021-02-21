@@ -63,9 +63,9 @@ namespace InstaGama.Domain.Entities
 
         public bool IsValid()
         {
-            if(string.IsNullOrEmpty(UserId.ToString())||
-                string.IsNullOrEmpty(Text)){
-                return false;
+            bool valid = true;
+            if(Text==""||Text==null){
+                valid= false;
             }
             return true;
 

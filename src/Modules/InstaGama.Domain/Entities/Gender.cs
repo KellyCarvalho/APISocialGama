@@ -14,6 +14,15 @@
             Description = description;
         }
 
+        public Gender()
+        {
+        }
+
+        public Gender(int id)
+        {
+            Id = id;
+        }
+
         public int Id { get; private set; }
         public string Description { get; private set; }
 

@@ -57,8 +57,16 @@ namespace InstaGama.Api
                 };
             });
 
-           
-          
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                        builder =>
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader());
+            });
+
+
             services.AddSwaggerGen(options => {
 
                 var apiInfo = new OpenApiInfo
@@ -116,9 +124,8 @@ namespace InstaGama.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("CorsPolicy");
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

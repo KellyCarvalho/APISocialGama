@@ -1,5 +1,6 @@
 ﻿using InstaGama.Application.AppFriends.Input;
 using InstaGama.Application.AppFriends.Interfaces;
+using InstaGama.Application.AppUser.Output;
 using InstaGama.Domain.Core.Interfaces;
 using InstaGama.Domain.Entities;
 using InstaGama.Domain.Interfaces;
@@ -34,18 +35,38 @@ namespace InstaGama.Application.AppFriends
             if (checkIfExistFriend != null)
             {
                 await _friendsRepository
-                        .DeleteAsync(userId, idFriend)
+                        .DeleteAsync(checkIfExistFriend.UserId, checkIfExistFriend.UserFriendId)
                         .ConfigureAwait(false);
 
                 await _friendsRepository
-                      .DeleteAsync(idFriend, idFriend)
+                      .DeleteAsync(checkIfExistFriend.UserFriendId,checkIfExistFriend.UserId)
                       .ConfigureAwait(false);
             }
-            else
+            if (checkIfExistFriend == null)
             {
                 throw new ArgumentException("O usuário que está tentando desfazer a amizade não está na sua lista de amigos");
             }
 
+        }
+
+        public async Task<Friends> GetFriendsByFriendIdAsync(int idfriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetFriendsByFriendIdAsync(userId, idfriend)
+                                    .ConfigureAwait(false);
+            return friends;
+        }
+
+        public async Task<Friends> GetFriendsByFriendIdPendingAsync(int friendId)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetFriendsByFriendIdPendingAsync(userId,friendId)
+                                    .ConfigureAwait(false);
+            return friends;
         }
 
         public async Task<List<Friends>> GetFriendsByFriendPendingAsync()
@@ -68,6 +89,8 @@ namespace InstaGama.Application.AppFriends
             return friends;
         }
 
+      
+
         public async Task<Friends> InsertAsync(FriendsInput friendsInput)
         {
             var userId = _logged.GetUserLoggedId();
@@ -80,13 +103,18 @@ namespace InstaGama.Application.AppFriends
 
             
 
-            var checkIfIsPending = await _friendsRepository
+            var checkIfIsPending1 = await _friendsRepository
                                             .GetFriendsByFriendIdPendingAsync(userId,friendsInput.UserFriendId)
                                             .ConfigureAwait(false);
 
             var checkIfIsPending2 = await _friendsRepository
                                             .GetFriendsByFriendIdPendingAsync(friendsInput.UserFriendId, userId)
                                             .ConfigureAwait(false);
+
+            if (userId == friendsInput.UserFriendId)
+            {
+                throw new ArgumentException("Você está tentando enviar uma solicitação para si mesmo, isso não é permitido");
+            }
 
 
             if (checkIfAlredyExist != null)
@@ -99,6 +127,11 @@ namespace InstaGama.Application.AppFriends
             if (checkIfIsPending2 != null)
             {
                 throw new ArgumentException("Espere a pessoa aceitar seu convite, pois ainda está pendente");
+            }
+
+            if (checkIfIsPending1 != null)
+            {
+                throw new ArgumentException("Existe uma solicitação a ser aceita por você enviada por esta amiga, apenas aceite o convite");
             }
 
             if (!friend.IsValid())
@@ -127,11 +160,11 @@ namespace InstaGama.Application.AppFriends
 
             if(checkIfExistAsFriend!=null)
             {
-                throw new ArgumentException("Você já aceitou esta amiga");
+                throw new ArgumentException("Você já aceitou esta pessoa");
             }
 
             if(checkIfPendingExiste ==null){
-                throw new ArgumentException("Não existe convites pendentes envie um");
+                throw new ArgumentException("Não existe convite pendentes a ser aceito enviado por esta pessoa");
             }
 
             if(checkIfPendingExiste != null)
@@ -162,6 +195,77 @@ namespace InstaGama.Application.AppFriends
 
         }
 
+        public async Task <List<UserViewModel>> GetProfileAllFriends()
+        {
+            var userId = _logged.GetUserLoggedId();
 
+            var friends = await _friendsRepository
+                                    .GetProfileAllFriends(userId)
+                                    .ConfigureAwait(false);
+
+            var allfriends = new List<UserViewModel>();
+            
+            foreach(var friend in friends)
+            {
+                var convertUserToView = new UserViewModel()
+                {
+                    Id = friend.Id,
+                    Name = friend.Name,
+                    Birthday = friend.Birthday,
+                    Email = friend.Email,
+                    Gender = friend.Gender,
+                    Photo = friend.Photo
+                };
+
+                allfriends.Add(convertUserToView);
+
+            }
+
+
+
+
+
+
+            return allfriends;
+        }
+
+        public async Task<UserViewModel> GetProfileFriendById(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+
+            var friends = await _friendsRepository
+                                    .GetProfileFriendById(userId,idFriend)
+                                    .ConfigureAwait(false);
+              return new UserViewModel()
+            {
+                Id = friends.Id,
+                Name = friends.Name,
+                Birthday = friends.Birthday,
+                Email = friends.Email,
+                Gender = friends.Gender,
+                Photo = friends.Photo
+            };
+            
+        }
+
+        public async Task<List<string>> GetPhotosFriendsAsync()
+        {
+            var userId = _logged.GetUserLoggedId();
+            var photosAllFriends = await _friendsRepository
+                                            .GetPhotosFriendsAsync(userId)
+                                            .ConfigureAwait(false);
+
+            return photosAllFriends;
+        }
+
+        public async Task<List<string>> GetPhotosFriendByIdAsync(int idFriend)
+        {
+            var userId = _logged.GetUserLoggedId();
+            var photosFriend = await _friendsRepository
+                                            .GetPhotosFriendsAsync(userId)
+                                            .ConfigureAwait(false);
+
+            return photosFriend;
+        }
     }
 }

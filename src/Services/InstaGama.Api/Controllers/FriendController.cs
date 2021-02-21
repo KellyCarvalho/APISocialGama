@@ -59,9 +59,11 @@ namespace InstaGama.Api.Controllers
             return Ok(friends);
         }
 
+
+
         [Authorize]
         [HttpGet]
-        [Route("Pendente")]
+        [Route("Pending")]
         public async Task<IActionResult> GetPending()
         {
             var friends = await _friendAppService
@@ -77,8 +79,80 @@ namespace InstaGama.Api.Controllers
             return Ok(friends);
         }
 
-        [HttpPut]
+        [Authorize]
+        [HttpGet]
+        [Route("Pending/{idfriend}")]
+        public async Task<IActionResult> GetPendingIdfriend(int idfriend)
+        {
+            var friends = await _friendAppService
+                                    .GetFriendsByFriendIdPendingAsync(idfriend)
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [Authorize]
+        [HttpGet]
         [Route("{idfriend}")]
+        public async Task<IActionResult> GetIdfriend(int idfriend)
+        {
+            var friends = await _friendAppService
+                                    .GetFriendsByFriendIdAsync(idfriend)
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Profile/{idfriend}")]
+        public async Task<IActionResult> GetProfile(int idfriend)
+        {
+            var friends = await _friendAppService
+                                    .GetProfileFriendById(idfriend)
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Profile/")]
+        public async Task<IActionResult> GetProfileFriends()
+        {
+            var friends = await _friendAppService
+                                    .GetProfileAllFriends()
+                                    .ConfigureAwait(false);
+
+
+            if (friends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(friends);
+        }
+
+        [HttpPut]
+        [Route("{idfriend}/Acceptfriendship")]
         public async Task<IActionResult> Update([FromRoute] int idfriend)
         {
             try
@@ -111,6 +185,40 @@ namespace InstaGama.Api.Controllers
                 return BadRequest(arg.Message);
             }
 
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("AllPhotosFriends/")]
+        public async Task<IActionResult> GetAllPhotosFriends()
+        {
+            var allPhotosFriends = await _friendAppService
+                                    .GetPhotosFriendsAsync()
+                                    .ConfigureAwait(false);
+
+            if (allPhotosFriends is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(allPhotosFriends);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("{idFriend}/PhotosFriend/")]
+        public async Task<IActionResult> GetPhotosFriendById(int idFriend)
+        {
+            var allPhotosFriend = await _friendAppService
+                                    .GetPhotosFriendByIdAsync(idFriend)
+                                    .ConfigureAwait(false);
+
+            if (allPhotosFriend is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(allPhotosFriend);
         }
 
     }

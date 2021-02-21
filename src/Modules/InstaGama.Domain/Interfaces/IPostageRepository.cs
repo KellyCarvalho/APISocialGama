@@ -11,5 +11,7 @@ namespace InstaGama.Domain.Interfaces
 
         Task<List<Postage>> GetPostageFriendAsync(int userId);
 
+        Task DeleteAsync(int userId);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using InstaGama.Application.AppUser.Input;
 using InstaGama.Application.AppUser.Interfaces;
+using InstaGama.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,6 +71,53 @@ namespace InstaGama.Api.Controllers
             return Ok(photos);
         }
 
+        
+        [HttpGet]
+        [Route("AllUsers/")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var photos = await _userAppService
+                                .GetAllUsersAsync()
+                                .ConfigureAwait(false);
 
-    }
+            if (photos is null)
+                return NotFound();
+
+            return Ok(photos);
+        }
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UserInput userInput)
+        {
+            try
+            {
+
+                var userUpdated = await _userAppService
+                                    .UpdateAsync(userInput)
+                                    .ConfigureAwait(false);
+
+                return Accepted("", userUpdated);
+            }
+            catch (ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
+        {
+            try
+            {
+                await _userAppService
+                            .DeleteUserAsync()
+                            .ConfigureAwait(false);
+                return Accepted("", "");
+            }
+            catch (ArgumentException arg)
+            {
+                return BadRequest(arg.Message);
+            }
+        }
+
+        }
 }

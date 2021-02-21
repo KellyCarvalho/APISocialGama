@@ -7,6 +7,8 @@ namespace InstaGama.Domain.Interfaces
     {
         Task<int> InsertAsync(Likes likes);
         Task DeleteAsync(int id);
+
+        Task DeleteAsyncByUser(int idUser);
         Task<int> GetQuantityOfLikesByPostageIdAsync(int postageId);
         Task<Likes> GetByUserIdAndPostageIdAsync(int userId, int postageId);
     }
