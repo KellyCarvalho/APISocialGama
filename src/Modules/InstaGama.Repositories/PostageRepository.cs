@@ -88,18 +88,16 @@ namespace InstaGama.Repositories
         {
             using (var con = new SqlConnection(_configuration["ConnectionString"]))
             {
-                var sqlCmd = @$"SELECT  a.UsuarioId, 
+                var sqlCmd = @$"SELECT  a.UsuarioId, a.UsuarioAmigoId, 
                                         p.Id,
                                         p.Foto,
                                         p.Texto,
                                         p.Criacao
                                         FROM 
-                                        Amigos b
-                                        INNER JOIN Amigos a 
-                                        on a.UsuarioAmigoId=b.UsuarioId
-                                        INNER JOIN Postagem p
-                                        on p.UsuarioId=b.UsuarioAmigoId
-                                        where b.UsuarioId='{userId}' 
+                                        Postagem p
+										INNER JOIN Amigos a
+										on p.UsuarioId=a.UsuarioAmigoId
+                                        where a.UsuarioId='{userId}' 
                                         order by  p.Criacao desc;";
 
                 using (var cmd = new SqlCommand(sqlCmd, con))
