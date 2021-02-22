@@ -262,7 +262,7 @@ namespace InstaGama.Application.AppFriends
         {
             var userId = _logged.GetUserLoggedId();
             var photosFriend = await _friendsRepository
-                                            .GetPhotosFriendsAsync(userId)
+                                            .GetPhotosFriendByIdAsync(userId,idFriend)
                                             .ConfigureAwait(false);
 
             return photosFriend;
